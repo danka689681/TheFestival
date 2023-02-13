@@ -1,0 +1,36 @@
+.centered-text {
+    text-align: center;
+    margin: 15px;
+}
+.sidebar-custom {
+    background: black;
+}
+.panel-header-colored {
+    /*background: #f8f9fa;*/
+    padding-top: 60px;
+    background: #101010;
+    position: relative;
+    overflow: hidden;
+}
+.main-heading {
+    padding-top: 3%;
+}
+.sidebar .logo, .off-canvas-sidebar .logo {
+    background: #101010;
+}
+
+.sidebar .sidebar-wrapper, .off-canvas-sidebar .sidebar-wrapper {
+    background: #101010;
+}
+
+
+    
+@media (min-width: 992px) {
+
+.sidebar .nav>li.nav-bottom {
+    position: absolute;
+    width: 100%;
+    bottom: 10px;
+}
+}
+
