@@ -33,107 +33,76 @@
   <link href="../assets/css/admin.css" rel="stylesheet" />
 </head>
 
-<body><div class="sidebar"  data-color="<?php echo $color ?>">
-   <!--
-      Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
-      -->
-   <div class="logo">
-      <a  class="simple-text logo-mini">
-      <img src="../assets/img/Logo.png" />
-      </a>
-      <a href="/" class="simple-text logo-normal">
-      Musiva
-      </a>
-   </div>
-   <div class="sidebar-wrapper" id="sidebar-wrapper">
-      <ul class="nav">
-         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin' ? 'active' : '');?>">
-            <a href="/admin">
-               <i class="fa-solid fa-house"></i>              
-               <p>Dashboard</p>
-            </a>
-         </li>
-         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/users' ? 'active' : '');?>">
-            <a href="/admin/users">
-               <i class="fa-solid fa-user"></i>              
-               <p>Users</p>
-            </a>
-         </li>
-         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/visitHaarlem' ? 'active' : '');?>">
-            <a href="/admin/visitHaarlem">
-               <i class="fa-solid fa-signs-post"></i>             
-               <p>Visit Haarlem</p>
-            </a>
-         </li>
-         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/festival' ? 'active' : '');?>">
-            <a href="/admin/festival">
-               <i class="fa-solid fa-icons fa-fw fa-2x"></i>
-               <p>Festival</p>
-            </a>
-         </li>
-         <li class="nav-bottom">
-            <a href="">
-               <i class="fa-solid fa-right-from-bracket"></i>
-               <p>Logout</p>
-            </a>
-         </li>
-      </ul>
-   </div>
-</div>
-<div class="main-panel" id="main-panel">
-   <!-- Navbar -->
-   <nav class="navbar navbar-expand-lg navbar-transparent  bg-primary  navbar-absolute">
-      <div class="container-fluid">
-         <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-               <button type="button" class="navbar-toggler">
-               <span class="navbar-toggler-bar bar1"></span>
-               <span class="navbar-toggler-bar bar2"></span>
-               <span class="navbar-toggler-bar bar3"></span>
-               </button>
-            </div>
-         </div>
+<body><div>
+   <nav class="navbar navbar-expand-lg bg-black">
+      <div class="container customized-nav-container">
+         <!-- <ul class="navbar-nav"> -->
+         <ul class="navbar-nav">
+            <li class="nav-item active">
+               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#">History</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#">Explore</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#">Food</a>
+            </li>
+            <!-- <li class="nav-item">
+               <img class="custom-logo" src="../assets/img/Logo.png">
+               </li> -->
+         </ul>
+         <img class="custom-logo" src="../assets/img/Logo.png">
+         <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+               Festival
+               </a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">Stroll Through History</a>
+                  <a class="dropdown-item" href="#">Yummy</a>
+                  <a class="dropdown-item" href="#">Dance</a>
+               </div>
+            </li>
+            <li>
+               <i class="fa-solid fa-heart"></i>
+            </li>
+            <li>
+               <i class="fa-solid fa-cart-shopping"></i>
+            </li>
+            <li>
+               <i class="fa-solid fa-user"></i>
+            </li>
+            <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+               English
+               </a>
+               <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <a class="dropdown-item" href="#">English</a>
+                  <a class="dropdown-item" href="#">Dutch</a>
+                  <a class="dropdown-item" href="#">Korean</a>
+                  <a class="dropdown-item" href="#">Chinese</a>
+               </div>
+            </li>
+         </ul>
       </div>
-   </nav>
-   <!-- End Navbar -->
-   <div class="panel-header-colored">
-   </div>
 </div>
+</nav>
 </div>
 <script>
    var css = document.createElement('link');
    css.rel = 'stylesheet';
-   css.href = '../assets/css/admin.css';
+   css.href = '../assets/css/navbar.css';
    document.head.appendChild(css);
-</script>
-    <div class="main-panel" id="main-panel">
-      <h1 class="centered-text">Visit Haarlem</h1>
-    </div>
-
-
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
-  <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.3.0/css/all.css">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <title>
-   Admin Dashboard
-  </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
-  <!--     Fonts and icons     -->
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
-  <!-- CSS Files -->
-  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
-  <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
-  <link href="../assets/css/admin.css" rel="stylesheet" />
-</head>
-
-<body>
+</script><div>
+  <h1 class="centered-text">Homepage!</h1>
+</div>
+ <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
@@ -147,4 +116,5 @@
   <script src="../assets/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/now-ui-dashboard.min.js?v=1.5.0" type="text/javascript"></script>
-</body></body></html>
+
+</body></html>

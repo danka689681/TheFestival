@@ -1,6 +1,4 @@
-<?php
-include __DIR__ . '/../header.php';
-
-echo "<h1>Homepage!</h1>";
-
-include __DIR__ . '/../footer.php';
+<div>
+  <h1 class="centered-text">Homepage!</h1>
+</div>
+ 
