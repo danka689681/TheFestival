@@ -31,6 +31,16 @@
                            <th class="text-right">CRUD</th>
                         </thead>
                         <tbody>
+                        <?php
+                         foreach ($users as $user) {
+                          ?>
+                          <tr>
+                              <td><?= $user->getEmail() ?></td>
+                           </tr>
+                    
+                          <?php
+                          }
+                          ?>
                            <tr>
                               <td>
                                  John Doe

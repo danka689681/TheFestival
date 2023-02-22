@@ -15,4 +15,19 @@ class UserDAO extends Database {
         }
     }
 
+    function getAllUsers() {
+        try {
+            $stmt = $this->connection->prepare("SELECT ID, Email, password, IsAdmin FROM users");
+            $stmt->execute();
+
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
+            $users = $stmt->fetchAll();
+            return $users;
+
+        } catch (PDOException $e)
+        {
+            echo $e;
+        }
+    }
+
 }

@@ -1,4 +1,5 @@
 <?php
+ #[AllowDynamicProperties]
 class User implements JsonSerializable {
     public function jsonSerialize() : mixed { return get_object_vars($this); }
 private $id;
