@@ -16,27 +16,22 @@ class AdminController extends Controller {
     public function index() {
        $color = "red";
        $body = __DIR__ . "/../View/Admin/index.php";
-       echo generateContent($this->header, $body, $this->footer);
-       require "generatedOutput.php"; 
-
+       eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
     }
     public function users() {
        $color = "yellow";
        $body = __DIR__ . "/../View/Admin/users.php";
-       echo generateContent($this->header, $body, $this->footer);
-       require "generatedOutput.php"; 
+       eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
     }
     public function visitHaarlem() {
         $color = "green";
         $body = __DIR__ . "/../View/Admin/visitHaarlem.php";
-        echo generateContent($this->header, $body, $this->footer);
-        require "generatedOutput.php"; 
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
     }
     public function festival() {
         $color = "blue";
         $body = __DIR__ . "/../View/Admin/festival.php";
-        echo generateContent($this->header, $body, $this->footer);
-        require "generatedOutput.php";      
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');    
     }
 }
 ?>
