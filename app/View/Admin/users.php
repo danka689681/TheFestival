@@ -35,28 +35,11 @@
                          foreach ($users as $user) {
                           ?>
                           <tr>
+                              <td><?= $user->getName() ?></td>
                               <td><?= $user->getEmail() ?></td>
-                           </tr>
-                    
-                          <?php
-                          }
-                          ?>
-                           <tr>
-                              <td>
-                                 John Doe
-                              </td>
-                              <td>
-                                 test@test.com
-                              </td>
-                              <td>
-                                 <a class="text-warning" href="">reset password</a>
-                              </td>
-                              <td>
-                                 User
-                              </td>
-                              <td>
-                                 13-02-2023
-                              </td>
+                              <td><a class="text-warning" href="">reset password</a></td>
+                              <td><?=($user->getIsAdmin() === '1') ? 'Admin' : 'User'; ?></td>
+                              <td><?= $user->getRegistrationDate() ?></td>
                               <td class="td-actions text-right">
                                  <button type="button" rel="tooltip" class="btn btn-info btn-sm btn-icon">
                                  <i class="now-ui-icons ui-2_settings-90"></i>
@@ -66,6 +49,10 @@
                                  </button>
                               </td>
                            </tr>
+                    
+                          <?php
+                          }
+                          ?>
                         </tbody>
                      </table>
                   </div>

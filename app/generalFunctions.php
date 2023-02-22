@@ -10,7 +10,6 @@ function generateContent($header, $body, $footer){
                 file_get_contents($body) .
                 file_get_contents($footer) .
                 file_get_contents("./templateScripts.php") .
-                '</body></html>' ;
-               
-    file_put_contents("./generatedOutput.php", $htmlString); 
+                '</body></html>';
+    return $htmlString; 
 }
