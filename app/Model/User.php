@@ -1,10 +1,13 @@
 <?php
+// #[AllowDynamicProperties]
 class User implements JsonSerializable {
     public function jsonSerialize() : mixed { return get_object_vars($this); }
-private $id;
-private $email;
-private $password;
-private $isAdmin;
+    private $ID;
+    private $Name;
+    private $Email;
+    private $password;
+    private $IsAdmin;
+    private $RegistrationDate;
 /**
      * Get the value of id
      *
@@ -12,19 +15,43 @@ private $isAdmin;
      */
     public function getId(): int
     {
-        return $this->id;
+        return $this->ID;
     }
 
     /**
      * Set the value of id
      *
-     * @param int $id
+     * @param int $ID
      *
      * @return self
      */
-    public function setId(int $id): self
+    public function setId(int $ID): self
     {
-        $this->id = $id;
+        $this->ID = $ID;
+
+        return $this;
+    }
+
+      /**
+     * Get the value of Name
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->Name;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @param string $Name
+     *
+     * @return self
+     */
+    public function setName(string $Name): self
+    {
+        $this->Name = $Name;
 
         return $this;
     }
@@ -36,19 +63,19 @@ private $isAdmin;
      */
     public function getEmail(): string
     {
-        return $this->email;
+        return $this->Email;
     }
 
     /**
      * Set the value of email
      *
-     * @param string $email
+     * @param string $Email
      *
      * @return self
      */
-    public function setEmail(string $email): self
+    public function setEmail(string $Email): self
     {
-        $this->email = $email;
+        $this->Email = $Email;
 
         return $this;
     }
@@ -83,19 +110,42 @@ private $isAdmin;
      */
     public function getIsAdmin(): string
     {
-        return $this->isAdmin;
+        return $this->IsAdmin;
     }
 
     /**
      * Set the value of isAdmin
      *
-     * @param bit $isAdmin
+     * @param bit $IsAdmin
      *
      * @return self
      */
-    public function setIsAdmin(string $isAdmin): self
+    public function setIsAdmin(string $IsAdmin): self
     {
-        $this->isAdmin = $isAdmin;
+        $this->IsAdmin = $IsAdmin;
+
+        return $this;
+    }
+           /**
+     * Get the value of RegistrationDate
+     *
+     * @return DateTime
+     */
+    public function getRegistrationDate(): string
+    {
+        return $this->RegistrationDate;
+    }
+
+    /**
+     * Set the value of RegistrationDate
+     *
+     * @param DateTime $RegistrationDate
+     *
+     * @return self
+     */
+    public function setRegistrationDate(DateTime $RegistrationDate): self
+    {
+        $this->RegistrationDate = $RegistrationDate;
 
         return $this;
     }

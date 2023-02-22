@@ -2,15 +2,18 @@
 // Initialize the session
 require __DIR__ . '/MainController.php';
 require __DIR__ . '/../generalFunctions.php';
-
+require __DIR__ . '/../DAL/UserService.php';
+require __DIR__ . '/../Model/User.php';
 
 class AdminController extends Controller {
     public $header;
     public $footer;
-
+    private $UserService;
     function __construct() {
         $this->header =  __DIR__ . "/../View/Admin/adminHeader.php"; 
         $this->footer =  __DIR__ . "/../View/Admin/adminFooter.php"; 
+        $this->UserService = new UserService();
+
     }
  
     public function index() {
@@ -20,6 +23,7 @@ class AdminController extends Controller {
     }
     public function users() {
        $color = "yellow";
+       $users = $this->UserService->getAllUsers();
        $body = __DIR__ . "/../View/Admin/users.php";
        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
     }
