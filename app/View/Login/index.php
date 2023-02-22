@@ -1,5 +1,3 @@
-<?php echo $email; ?>
-
 <!DOCTYPE html>
 <html>
 <head>

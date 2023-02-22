@@ -7,9 +7,4 @@ class UserService {
         $user = $dao->getUserByEmail($email);
         return $user;
     }
-
-    public function getTables() {
-        $dao = new UserDAO();
-        $user = $dao->getTables();
-    }
 }
