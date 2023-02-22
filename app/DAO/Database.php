@@ -6,7 +6,7 @@ class Database
 
     function __construct()
     {
-            $serverName = "mysql";
+            $serverName = "festival.mysql.database.azure.com";
             $username = "admin123";
             $password = "secret123.";
             $databaseName = "festival";

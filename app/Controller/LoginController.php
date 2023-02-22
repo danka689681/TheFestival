@@ -35,7 +35,6 @@ class LoginController extends Controller {
             // Validate credentials
             if(empty($email_err) && empty($password_err)){
                 $UserService = new UserService();
-                $UserService->getTables();
                 $user = $UserService->getUserByEmail($email);
 
                 if(!empty($user)){  
