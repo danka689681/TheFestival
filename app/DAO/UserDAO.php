@@ -28,5 +28,35 @@ class UserDAO extends Database {
             echo $e;
         }
     }
+    function updateUserByID($id, $name, $email, $role) {
+         try {
+            $stmt = $this->connection->prepare("UPDATE users SET Name = ?, Email = ?, IsAdmin = ? WHERE ID = ?;");
+            $stmt->bindValue(1, $name);
+            $stmt->bindValue(2, $email);
+            $stmt->bindValue(3, $role);
+            $stmt->bindValue(4, intval($id));
+
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e)
+        {
+            echo $e;
+            return false;
+        }
+    }
+
+    function deleteUserByID($id) {
+        try {
+           $stmt = $this->connection->prepare("DELETE FROM users WHERE ID = ?;");
+           $stmt->execute([$id]);
+           $stmt->execute();
+           return true;
+       } catch (PDOException $e)
+       {
+           echo $e;
+           return false;
+       }
+   }
+
 
 }

@@ -106,9 +106,9 @@ class User implements JsonSerializable {
          /**
      * Get the value of isAdmin
      *
-     * @return bit
+     * @return bool
      */
-    public function getIsAdmin(): string
+    public function getIsAdmin(): bool
     {
         return $this->IsAdmin;
     }
@@ -116,20 +116,21 @@ class User implements JsonSerializable {
     /**
      * Set the value of isAdmin
      *
-     * @param bit $IsAdmin
+     * @param bool $IsAdmin
      *
      * @return self
      */
-    public function setIsAdmin(string $IsAdmin): self
+    public function setIsAdmin(bool $IsAdmin): self
     {
         $this->IsAdmin = $IsAdmin;
 
         return $this;
     }
-           /**
+   
+             /**
      * Get the value of RegistrationDate
      *
-     * @return DateTime
+     * @return string
      */
     public function getRegistrationDate(): string
     {
@@ -139,14 +140,15 @@ class User implements JsonSerializable {
     /**
      * Set the value of RegistrationDate
      *
-     * @param DateTime $RegistrationDate
+     * @param string $RegistrationDate
      *
      * @return self
      */
-    public function setRegistrationDate(DateTime $RegistrationDate): self
+    public function setRegistrationDate(string $RegistrationDate): self
     {
         $this->RegistrationDate = $RegistrationDate;
 
         return $this;
     }
+    
 }
