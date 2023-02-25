@@ -12,4 +12,16 @@ class UserService {
         $user = $dao->getAllUsers();
         return $user;
     }
+
+    public function updateUserByID($id, $name, $email, $role){
+        $dao = new UserDAO();
+        $updated = $dao->updateUserByID($id, $name, $email, $role);
+        return $updated;
+    }
+    public function deleteUserByID($id){
+        $dao = new UserDAO();
+        $deleted = $dao->deleteUserByID($id);
+        return $deleted;
+    }
+
 }

@@ -13,3 +13,18 @@ function generateContent($header, $body, $footer){
                 '</body></html>';
     return $htmlString; 
 }
+
+function sendMail(){ 
+
+    $to = "repkova2001@gmail.com";
+    $subject = "My subject";
+    $txt = "Hello world!";
+    $headers = "From: webmaster@example.com";
+    $msg = "First line of text\nSecond line of text";
+
+        // use wordwrap() if lines are longer than 70 characters
+    $msg = wordwrap($msg,70);
+
+        // send email
+    mail($to, "My subject",$msg);
+}
