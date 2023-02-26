@@ -1,2 +1,0 @@
-php_value session.auto_start 0 
-session.name = session

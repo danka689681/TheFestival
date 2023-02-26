@@ -15,7 +15,9 @@ class LoginController extends Controller {
     }
     public function index() {
         if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-            header("location: /");
+            echo '<script type="text/javascript">
+                window.location = "/"
+            </script>';
         } 
         $email = $password = "";
         $email_err = $password_err = $login_err = "";
@@ -38,8 +40,10 @@ class LoginController extends Controller {
     
                 if(!empty($user)){  
                     if (password_verify($password, $user->getPassword())) {
-                        // $_SESSION["loggedin"] = true;
-                        header("location: /");
+                        $_SESSION["loggedin"] = true;
+                        echo '<script type="text/javascript">
+                            window.location = "/"
+                        </script>';
                     } else {
                         echo 'Invalid password.';
                     }    
