@@ -1,4 +1,3 @@
-
 <?php
 function generateContent($header, $body, $footer){ 
     $htmlString = 
