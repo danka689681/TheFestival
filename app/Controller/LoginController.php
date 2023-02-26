@@ -52,8 +52,7 @@ class LoginController extends Controller {
         // Register
         require __DIR__ . '/../generalFunctions.php';
         $body = __DIR__ . "/../View/Login/index.php";
-        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
-        
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php '); 
     }
 
 

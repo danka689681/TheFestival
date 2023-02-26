@@ -44,7 +44,19 @@ class UserDAO extends Database {
             return false;
         }
     }
-
+    function createUser($name, $email, $password) {
+        try {
+            $stmt = $this->connection->prepare("INSERT INTO users (Name, Email, Password) VALUES (?, ?, ?)");
+            $stmt->bindValue(1, $name);
+            $stmt->bindValue(2, $email);
+            $stmt->bindValue(3, $password);
+            $stmt->execute();
+            return true;
+        } catch (PDOException $e) {
+            echo $e;
+            return false;
+        }
+    }
     function deleteUserByID($id) {
         try {
            $stmt = $this->connection->prepare("DELETE FROM users WHERE ID = ?;");

@@ -12,6 +12,11 @@ class UserService {
         $user = $dao->getAllUsers();
         return $user;
     }
+    public function createNewUser($name, $email, $password) {
+        $dao = new UserDAO();
+        $created = $dao->createUser($name, $email, $password);
+        return $created;
+    }
 
     public function updateUserByID($id, $name, $email, $role){
         $dao = new UserDAO();
