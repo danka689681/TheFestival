@@ -29,6 +29,16 @@ class SwitchRouter {
                 $controller = new AdminController();
                 $controller->festival();
                 break;
+            case 'account':
+                require __DIR__ . '/Controller/AccountController.php';
+                $controller = new AccountController();
+                $controller->index();
+                break;            
+            case 'account/changePassword':
+                require __DIR__ . '/Controller/AccountController.php';
+                $controller = new AccountController();
+                $controller->changePassword();
+                break;
             default:
                 http_response_code(404);
                 break;
