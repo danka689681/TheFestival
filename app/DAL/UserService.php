@@ -18,6 +18,12 @@ class UserService {
         $updated = $dao->updateUserByID($id, $name, $email, $role);
         return $updated;
     }
+    public function updateUsersPassword($userID, $newPassword){
+        $dao = new UserDAO();
+        $updated = $dao->updateUsersPassword($userID, $newPassword);
+        return $updated;
+    }
+
     public function deleteUserByID($id){
         $dao = new UserDAO();
         $deleted = $dao->deleteUserByID($id);
