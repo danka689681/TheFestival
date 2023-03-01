@@ -18,7 +18,14 @@ class SwitchRouter {
                 require __DIR__ . '/Controller/AdminController.php';
                 $controller = new AdminController();
                 $controller->users();
-                break;
+                break;  
+            case 'test': 
+                    require __DIR__ . '/Controller/AdminController.php';
+                    $dConroller = 'AdminController';
+                    $dMethod = 'index';
+                    $controller = new $dConroller;
+                    $controller->$dMethod();
+                    break; 
             case 'admin/visitHaarlem': 
                 require __DIR__ . '/Controller/AdminController.php';
                 $controller = new AdminController();

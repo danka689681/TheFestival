@@ -44,6 +44,19 @@ class UserDAO extends Database {
             return false;
         }
     }
+    function updateUsersPassword($userID, $newPassword) {
+        try {
+           $stmt = $this->connection->prepare("UPDATE users SET Password = ? WHERE ID = ?;");
+           $stmt->bindValue(1, $newPassword);
+           $stmt->bindValue(2, $userID);
+           $stmt->execute();
+           return true;
+       } catch (PDOException $e)
+       {
+           echo $e;
+           return false;
+       }
+   }
 
     function deleteUserByID($id) {
         try {
