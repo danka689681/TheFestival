@@ -38,39 +38,85 @@
 
 </head>
 
-<?php
-    $name = "test user";
-    $email = "test@email.com";
-?>
+
 
 <body>
-    <div class="form-container">    
+<script type="text/javascript">
+  
+  //make data editable
+  function editNameField(){
+   document.getElementById("name").disabled = false;
+   if(document.getElementById("name").value==="" || document.getElementById("email").value==="") { 
+            document.getElementById('btnChanges').disabled = true; 
+        } else { 
+            document.getElementById('btnChanges').disabled = false;
+        }
+  }
+ function editEmailField(){
+  document.getElementById("email").disabled = false;
+  if(document.getElementById("name").value==="" || document.getElementById("email").value==="") { 
+            document.getElementById('btnChanges').disabled = true; 
+        } else { 
+            document.getElementById('btnChanges').disabled = false;
+        }
+ }
+ function success() {
+	 if(document.getElementById("name").value==="" || document.getElementById("email").value==="") { 
+            document.getElementById('btnChanges').disabled = true; 
+        } else { 
+            document.getElementById('btnChanges').disabled = false;
+        }
+  }
+
+  //make it work
+  function openDeleteAccountForm() {  
+         document.getElementById(`popup-deleteAccountForm`).style.display = "block";
+      }
+  function closeDeleteUserForm() {
+        document.getElementById(`popup-deleteAccountForm`).style.display = "none";
+      }
+  
+
+</script>
+
+    <div  class="form-container">    
         <div class="form-horizontal">
           <h2 class="title">Account</h2>
 
             <a>
                 <img class="default-avatar" src="../assets/img/default-avatar.png" /><br>
             </a><br>
-            <div class="account-info"> 
+            <form method="POST" class="account-info"> 
                 <label class="bold">Name: </label>
-                <input type="text" name="name" value="<?php echo $name ?>" disabled>
-                <button class="fa-solid fa-pen-to-square"></button><br>              
+                <input type="text" name="name" id="name" onkeyup="success()" value="<?= $userName ?>" disabled>
+                <button class="fa-solid fa-pen-to-square" type="button" onclick="editNameField()"></button><br>              
                 <label class="bold">Email: </label>
-                <input type="text" name="email" value="<?php echo $email ?>" disabled>
-                <button class="fa-solid fa-pen-to-square"></button><br><br>
-
+                <input type="text" name="email" id="email" onkeyup="success()" value="<?= $userEmail ?>" disabled>
+                <button class="fa-solid fa-pen-to-square" type="button" onclick="editEmailField()"></button><br><br>
+                <input type="submit" id="btnChanges" name="btnChanges" class="form-control btn grey" value="Save changes" disabled/>
                 
-                    <a class="<?php echo ($_SERVER['REQUEST_URI'] == '/account/changePassword' ? ' active' : '');?>" href="/account/changePassword">
-                    <button class="<?php echo ($_SERVER['REQUEST_URI'] == '/account/changePassword' ? ' active' : '');?>">Change password</button>
-                    </a>
+                <a class="<?php echo ($_SERVER['REQUEST_URI'] == '/account/changePassword' ? ' active' : '');?>" href="/account/changePassword">
+                      <button type="button" class="form-control btn" >Change password</button>
+                </a>
+            </form>
+                <button id="btnDeleteAccount" class="form-control" onclick="openDeleteAccountForm()" >Delete Account</button>
               
-            </div>
-        </div>
+    </div>
     </div>
 
 
+    <!-- are you sure to delete account popup-->
+    <div class="blur-bkg" id="popup-deleteAccountForm">
+    <div class="form-popup">
+      <form method="POST" class="form-container" id="deleteAccountForm-<?= $user->getID()?>">
+        <h2 class="centered-text">Are you sure you want to delete your account</h2>
+        <input type="submit" name="deleteAccount" class="btn btn-info" value="Yes" />
+        <button  type="button" class="btn btn-danger" onclick="closeDeleteUserForm(<?= $user->getID()?>)">No</button>
+      </form>
+    </div>
+    </div>
 
-  <!--   Core JS Files   -->
+  <!--   Core JS Files   class="<?php echo ($_SERVER['REQUEST_URI'] == '/account/changePassword' ? ' active' : '');?>" -->
   <script src="../assets/js/core/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>

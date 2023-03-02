@@ -38,6 +38,10 @@ class SwitchRouter {
                 require __DIR__ . '/Controller/AccountController.php';
                 $controller = new AccountController();
                 $controller->changePassword();
+            case 'login': 
+                require __DIR__ . '/Controller/LoginController.php';
+                $controller = new LoginController();
+                $controller->index();
                 break;
             default:
                 http_response_code(404);

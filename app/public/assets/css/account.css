@@ -45,7 +45,7 @@
     font-weight: 600;
     letter-spacing: 0.5px;
     text-transform: capitalize;
-    width: 130px;
+    width: 150px;
     padding: 11px;
     margin: 0 10px 10px 0;
     border: 2px solid #4E4C97;
@@ -68,3 +68,55 @@
     left: auto;
     right: 10px;
 }
+.grey{
+    background-color: grey;
+}
+.delete{
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    width: 150px;
+    padding: 11px;
+    margin: 0 10px 10px 0;
+    border: 2px solid #666666;
+    border-radius: 15px;
+    display: inline-block;
+    transition: all 0.3s ease 0s;
+}
+.form-popup {
+    position: fixed;
+    bottom: 0;
+    right: 15px;
+    border: 3px solid #f1f1f1;
+    z-index: 9;
+  }
+  .blur-bkg .form-group.col-md-6 {
+    margin: auto;
+  }
+
+  .blur-bkg .form-control {
+    width: auto;
+  }
+  .blur-bkg {
+    width: 100vw;
+    height: 100vh;
+    background: #0005;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: none;
+  }
+  .form-container {
+    padding: 10px;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    box-shadow: 0px 2px 18px 1px #888888;
+    border-radius: 8px;
+    padding: 3%;
+  }

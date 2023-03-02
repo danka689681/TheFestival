@@ -20,40 +20,40 @@
 <body>
     <script>
         function validatePassword() {
-	var currentPassword, newPassword, confirmPassword, output = true;
+	        var currentPassword, newPassword, confirmPassword, output = true;
 
-	currentPassword = document.frmChange.currentPassword;
-	newPassword = document.frmChange.newPassword;
-	confirmPassword = document.frmChange.confirmPassword;
+	        currentPassword = document.frmChange.currentPassword;
+	        newPassword = document.frmChange.newPassword;
+	        confirmPassword = document.frmChange.confirmPassword;
 
-	if (!currentPassword.value) {
-		currentPassword.focus();
-		document.getElementById("currentPassword").innerHTML = "required";
-		output = false;
-	}
-	else if (!newPassword.value) {
-		newPassword.focus();
-		document.getElementById("newPassword").innerHTML = "required";
-		output = false;
-	}
-	else if (!confirmPassword.value) {
-		confirmPassword.focus();
-		document.getElementById("confirmPassword").innerHTML = "required";
-		output = false;
-	}
-	if (newPassword.value != confirmPassword.value) {
-		newPassword.value = "";
-		confirmPassword.value = "";
-		newPassword.focus();
-		document.getElementById("confirmPassword").innerHTML = "not same";
-		output = false;
-	}
-	return output;
-}
+	        if (!currentPassword.value) {
+		        currentPassword.focus();
+		        document.getElementById("currentPassword").innerHTML = "required";
+		        output = false;
+	        }
+	        else if (!newPassword.value) {
+	        	newPassword.focus();
+		        document.getElementById("newPassword").innerHTML = "required";
+		        output = false;
+	        }
+	        else if (!confirmPassword.value) {
+		        confirmPassword.focus();
+		        document.getElementById("confirmPassword").innerHTML = "required";
+		        output = false;
+	        }
+	        if (newPassword.value != confirmPassword.value) {
+		        newPassword.value = "";
+		        confirmPassword.value = "";
+		        newPassword.focus();
+		        document.getElementById("confirmPassword").innerHTML = "not same";
+		        output = false;
+	        }
+	        return output;
+        }
 </script>
     <div class="form-container">
         <form class="form-horizontal" name="frmChange" method="post" action=""
-            onSubmit="return validatePassword()">
+            onsubmit="return validatePassword()">
 
             <div class="validation-message text-center"><?php if(isset($message)) { echo $message; } ?></div>
             <h2 class="title">Change Password</h2>
@@ -63,14 +63,14 @@
                     <span id="currentPassword"
                         class="validation-message"></span> <input
                         type="password" name="currentPassword"
-                        class="form-control">
+                        class="form-control" required>
 
                 </div>
                 <div class="row">
                     <label class="inline-block">New Password</label> <span
                         id="newPassword" class="validation-message"></span><input
                         type="password" name="newPassword"
-                        class="form-control">
+                        class="form-control" required>
 
                 </div>
                 <div class="row">
@@ -78,7 +78,7 @@
                     <span id="confirmPassword"
                         class="validation-message"></span><input
                         type="password" name="confirmPassword"
-                        class="form-control">
+                        class="form-control" required>
 
                 </div> <br>
                 <div class="row">
