@@ -13,11 +13,12 @@
                     <button type="submit" name="login" class="btn btn-primary">Login</button>
 		    	</form>
  
-		    	<form id="register" class="input-group">
-		    		<input type="text" class="input-field" placeholder="Name" required>
-		    		<input type="email" class="input-field" placeholder="Email Id" required>
-		    		<input type="text" class="input-field" placeholder="Enter password" required>
-                    <button type="submit" class="btn btn-primary">Register</button>
+		    	<form id="register" class="input-group" method="POST">
+		    		<input type="text" name="register-name"class="input-field" placeholder="Name" required>
+		    		<input type="email" name="register-email"class="input-field" placeholder="Email" required>
+		    		<input type="text" name="register-password"class="input-field" placeholder="Password" required>
+					<input type="text" name="register-confirm-password"class="input-field" placeholder="Confirm password" required>
+                    <button type="submit" name="register" class="btn btn-primary">Register</button>
 		    	</form>
 		</div>
 	</div>

@@ -54,6 +54,43 @@ class LoginController extends Controller {
                }
         }
         // Register
+        if (isset($_POST['register'])) {
+            $regEmail = $regPassword = $regName = $regConfirmPassword = "";
+            $regEmail_err = $regPassword_err = $regName_err = $regConfirmPassword_err = $register_err ="";
+            if(empty($_POST["register-email"])) {
+                $regEmail_err = "Please enter email.";
+            } else{
+                $regEmail = $_POST["register-email"];
+            } if(empty($_POST["register-name"])) {
+                $regName_err = "Please enter name.";
+            } else{
+                $regName = $_POST["register-name"];
+            } if(empty($_POST["register-password"])) {
+                $regPassword_err = "Please enter password.";
+            } else{
+                $regPassword = $_POST["register-password"];
+            } if(empty($_POST["register-confirm-password"])) {
+                $regConfirmPassword_err = "Please confirm password.";
+            } else{
+                $regConfirmPassword = $_POST["register-confirm-password"];
+            }
+                if ($regPassword == $regConfirmPassword) {
+                    $user = $this->UserService->getUserByEmail($regEmail);
+                    if ($user == null) {
+                        $this->UserService->createUser($regName, $regEmail, $regPassword);
+                        echo '<script>alert("User created!")</script>';
+                    } else {
+                        echo '<script>alert("User already exists!")</script>';
+                    }
+                } else {
+                    echo '<script>alert("Passwords do not match!")</script>';
+                }
+            
+
+            $user = $this->UserService->getUserByEmail($email);
+            if ($user != null)
+
+        }
         require __DIR__ . '/../generalFunctions.php';
         $body = __DIR__ . "/../View/Login/index.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php '); 
