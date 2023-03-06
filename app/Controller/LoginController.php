@@ -102,7 +102,7 @@ class LoginController extends Controller {
                                     $this->TokenService->updateTokenByUserEmail($regEmail, hash('sha256', $token), $selector, $expires);
                                 } else {
                                     $this->TokenService->createToken($regEmail, $selector, hash('sha256', $token), $expires, 0);
-                                 }
+                                }
                                 $htmlString = confirmEmailTemplate($regName, $urlToEmail);
                                 $mailSent = sendMail($subject, $htmlString, $bodyPlainText=$htmlString, $regEmail, $regName);
                                 if ($mailSent) {

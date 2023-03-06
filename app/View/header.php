@@ -38,9 +38,21 @@
             <li>
                <i class="fa-solid fa-cart-shopping"></i>
             </li>
-            <li>
-               <i class="fa-solid fa-user"></i>
-            </li>
+            <?php if (isset($_SESSION['User'])) { ?>
+               <li class="nav-item dropdown">
+                  <a class="" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
+                     aria-haspopup="true" aria-expanded="false">
+                     <i class="fa-solid fa-user"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                     <a class="dropdown-item" href="/logout">Logout</a>
+                  </div>
+               </li>
+            <?php } else { ?>
+               <li class="nav-item">
+                  <a class="nav-link" href="/Login">Login</a>
+                </li>
+            <?php } ?>
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
