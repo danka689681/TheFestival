@@ -87,22 +87,18 @@ class AdminController extends Controller {
             $subject = "Musiva - Reset Password";
             $selector = bin2hex(random_bytes(8));
             $token = random_bytes(32);
-            $userID = $_GET['pswdResetID'];
             $urlToEmail = getHostingURL() . 'validation/resetpsswd?'.http_build_query([
                 'selector' => $selector,
                 'validator' => bin2hex($token)
             ]);
-            
-            
             $timezone = new DateTimeZone("Europe/Prague");
             $expires = new DateTime();
             $expires->setTimezone($timezone);
             $expires->add(new DateInterval('PT10M')); // 10 min
-            var_dump($this->TokenService->tokenExists($userID));
-            if ($this->TokenService->tokenExists($userID)) {
-                $this->TokenService->updateTokenByUserID($userID, hash('sha256', $token), $selector, $expires);
+            if ($this->TokenService->tokenExists($recepientMail)) {
+                $this->TokenService->updateTokenByUserEmail($recepientMail, hash('sha256', $token), $selector, $expires);
             } else {
-                $this->TokenService->createToken($userID, $selector, hash('sha256', $token), $expires, 1);
+                $this->TokenService->createToken($recepientMail, $selector, hash('sha256', $token), $expires, 1);
              }
         
             $htmlString = resetPasswordMailTemplate($recepientName, $urlToEmail);
