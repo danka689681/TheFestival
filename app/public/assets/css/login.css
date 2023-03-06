@@ -53,7 +53,6 @@ body{
 }
 
 .input-group{
-	top: 180px;
 	position: absolute;
 	width: 280px;
 	transition: .5s;

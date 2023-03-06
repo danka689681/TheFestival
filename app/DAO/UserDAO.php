@@ -44,11 +44,11 @@ class UserDAO extends Database {
             return false;
         }
     }
-    function updateUsersPassword($userID, $newPassword) {
+    function updateUsersPassword($userEmail, $newPassword) {
         try {
-           $stmt = $this->connection->prepare("UPDATE users SET Password = ? WHERE ID = ?;");
+           $stmt = $this->connection->prepare("UPDATE users SET Password = ? WHERE Email = ?;");
            $stmt->bindValue(1, $newPassword);
-           $stmt->bindValue(2, $userID);
+           $stmt->bindValue(2, $userEmail);
            $stmt->execute();
            return true;
        } catch (PDOException $e)
@@ -62,7 +62,7 @@ class UserDAO extends Database {
             $stmt = $this->connection->prepare("INSERT INTO users (Name, Email, Password) VALUES (?, ?, ?)");
             $stmt->bindValue(1, $name);
             $stmt->bindValue(2, $email);
-            $stmt->bindValue(3, $password);
+            $stmt->bindValue(3, password_hash($password, PASSWORD_DEFAULT));
             $stmt->execute();
             return true;
         } catch (PDOException $e) {

@@ -16,12 +16,17 @@
 		    	<form id="register" class="input-group" method="POST">
 		    		<input type="text" name="register-name"class="input-field" placeholder="Name" required>
 		    		<input type="email" name="register-email"class="input-field" placeholder="Email" required>
-		    		<input type="text" name="register-password"class="input-field" placeholder="Password" required>
-					<input type="text" name="register-confirm-password"class="input-field" placeholder="Confirm password" required>
+		    		<input type="password" name="register-password"class="input-field" placeholder="Password" required>
+					<input type="password" name="register-confirm-password"class="input-field" placeholder="Confirm password" required>
+					<div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> 
                     <button type="submit" name="register" class="btn btn-primary">Register</button>
 		    	</form>
+				<form id="recaptcha" class="input-group" method="POST">
+			 <!--	<div class="g-recaptcha" data-sitekey="6LffltEkAAAAAO87rv5-5Al6forQsIg7OCZnei0X"></div> -->
+				</form>
 		</div>
 	</div>
+	<script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <script>
         var css = document.createElement('link');
         css.rel = 'stylesheet';

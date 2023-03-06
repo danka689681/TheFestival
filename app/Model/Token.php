@@ -2,7 +2,7 @@
 class Token implements JsonSerializable {
     public function jsonSerialize() : mixed { return get_object_vars($this); }
     private $ID;
-    private $UserID;
+    private $UserEmail;
     private $Selector;
     private $Token;
     private $Expires;
@@ -31,25 +31,25 @@ class Token implements JsonSerializable {
         return $this;
     }
 /**
-     * Get the value of UserID
+     * Get the value of UserEmail
      *
-     * @return int
+     * @return string
      */
-    public function getUserID(): int
+    public function getUserEmail(): string
     {
-        return $this->UserID;
+        return $this->UserEmail;
     }
 
     /**
-     * Set the value of UserID
+     * Set the value of UserEmail
      *
-     * @param int $UserID
+     * @param int $UserEmail
      *
      * @return self
      */
-    public function setUserID(int $UserID): self
+    public function setUserEmail(int $UserEmail): self
     {
-        $this->UserID = $UserID;
+        $this->UserEmail = $UserEmail;
 
         return $this;
     }

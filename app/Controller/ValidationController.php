@@ -28,12 +28,12 @@ class ValidationController extends Controller {
             if (isset($_GET['selector']) && isset($_GET['validator'])) {
                 $selector = $_GET['selector'];
                 $validator = $_GET['validator'];
-                $UserID = $this->TokenService->verifyTokenGetUserID($selector, $validator);
+                $UserEmail = $this->TokenService->verifyTokenGetUserEmail($selector, $validator);
                 $this->TokenService->deleteTokenBySelector($selector);
                 
                 if ($newPassword == $confirmNewPassword) {
-                    if ($UserID) {
-                        $this->UserService->updateUsersPassword($UserID, password_hash($newPassword, PASSWORD_DEFAULT));
+                    if ($UserEmail) {
+                        $this->UserService->updateUsersPassword($UserEmail, password_hash($newPassword, PASSWORD_DEFAULT));
                         echo '<script>alert("User updated")</script>';
                         echo '<script type="text/javascript">
                             window.location = "/login"
@@ -52,6 +52,9 @@ class ValidationController extends Controller {
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
 
           
+    }
+    public function validateemail() {
+
     }
 }
 ?>

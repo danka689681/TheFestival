@@ -3,19 +3,19 @@ require_once("Database.php");
 
 class TokenDAO extends Database {
    
-    function createToken($UserID, $Selector, $Token, $Expires, $Type) {
+    function createToken($userEmail, $Selector, $Token, $Expires, $Type) {
         try { 
-            $stmt = $this->connection->prepare("INSERT INTO accounttokenes (UserID, Selector, Token, Expires, Type) VALUES (?, ?, ?, ?, ?)");
-            $stmt->execute([$UserID, $Selector, $Token, $Expires->format('Y-m-d H:i:s'), $Type]);
+            $stmt = $this->connection->prepare("INSERT INTO accounttokenes (UserEmail, Selector, Token, Expires, Type) VALUES (?, ?, ?, ?, ?)");
+            $stmt->execute([$userEmail, $Selector, $Token, $Expires->format('Y-m-d H:i:s'), $Type]);
             echo "created";
         } catch (PDOException $e) {
             echo $e;
         }
     }
-    function getTokenByUserID($userID) {
+    function getTokenByUserEmail($userEmail) {
         try { 
-            $stmt = $this->connection->prepare("SELECT ID, UserID, Selector, Token, Expires, Type FROM accounttokenes WHERE UserID = ?");
-            $stmt->execute($userID);
+            $stmt = $this->connection->prepare("SELECT ID, UserEmail, Selector, Token, Expires, Type FROM accounttokenes WHERE UserEmail = ?");
+            $stmt->execute($userEmail);
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'Token');
             $token = $stmt->fetch();
             return $token;
@@ -24,10 +24,10 @@ class TokenDAO extends Database {
         }
     }
   
-    function updateTokenByUserID($userID, $Token, $Selector, $Expires) { 
+    function updateTokenByUserEmail($userEmail, $Token, $Selector, $Expires) { 
         try {
-           $stmt = $this->connection->prepare("UPDATE accounttokenes SET Token = ?, Selector = ?, Expires = ? WHERE UserID = ?;");
-           $stmt->execute([$Token, $Selector, $Expires->format('Y-m-d H:i:s'), $userID]);
+           $stmt = $this->connection->prepare("UPDATE accounttokenes SET Token = ?, Selector = ?, Expires = ? WHERE UserEmail = ?;");
+           $stmt->execute([$Token, $Selector, $Expires->format('Y-m-d H:i:s'), $userEmail]);
        } catch (PDOException $e)
        {
            echo $e;
@@ -42,11 +42,11 @@ class TokenDAO extends Database {
             echo $e;
         }
     }
-    function tokenExists($userID) {
+    function tokenExists($userEmail) {
         try { 
-            $stmt = $this->connection->prepare("SELECT EXISTS (SELECT * FROM accounttokenes WHERE UserID = ? AND Type = ?)");
+            $stmt = $this->connection->prepare("SELECT EXISTS (SELECT * FROM accounttokenes WHERE UserEmail = ? AND Type = ?)");
       
-            $stmt->execute([$userID, 1,]);
+            $stmt->execute([$userEmail, 1,]);
             if($stmt->fetchColumn()) 
                 { return true; }
             else {
@@ -56,7 +56,7 @@ class TokenDAO extends Database {
             echo $e;
         }
     }
-    function verifyTokenGetUserID($selector, $validator) {
+    function verifyTokenGetUserEmail($selector, $validator) {
 
         $stmt = $this->connection->prepare("SELECT * FROM accounttokenes WHERE Selector = ? AND Expires >= NOW()");
         $stmt->execute([$selector]);
@@ -64,7 +64,7 @@ class TokenDAO extends Database {
         if (!empty($results)) {
             $calc = hash('sha256', hex2bin($validator));
             if (hash_equals($calc, $results[0]['Token'])) {
-                return $results[0]['UserID'];            
+                return $results[0]['UserEmail'];            
             }
                 return false;
             // Remove the token from the DB regardless of success or failure.
