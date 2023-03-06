@@ -28,7 +28,11 @@ class UserService {
         $updated = $dao->updateUsersPassword($userEmail, $newPassword);
         return $updated;
     }
-
+    public function verifyUser($email){
+        $dao = new UserDAO();
+        $verified = $dao->verifyUser($email);
+        return $verified;
+    }
     public function deleteUserByID($id){
         $dao = new UserDAO();
         $deleted = $dao->deleteUserByID($id);
