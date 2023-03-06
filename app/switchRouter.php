@@ -50,6 +50,11 @@ class SwitchRouter {
                 $controller = new LoginController();
                 $controller->index();
                 break;
+            case 'history': 
+                require __DIR__ . '/Controller/HistoryController.php';
+                $controller = new HistoryController();
+                $controller->index();
+                break;
             default:
                 http_response_code(404);
                 break;
