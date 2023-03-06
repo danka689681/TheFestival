@@ -44,15 +44,22 @@ class LoginController extends Controller {
             }
             if(empty($email_err) && empty($password_err)){
                 $user = $this->UserService->getUserByEmail($email);
-    
+                
                 if(!empty($user)){  
                     if (password_verify($password, $user->getPassword())) {
+                        if (!$user->getVerificationStatus()) {
+                            echo 'Please verify your email address before logging in.';
+                        }
+                        else {
                         $_SESSION["loggedin"] = true;
                         $_SESSION["User"] = $user;
                         echo '<script type="text/javascript">
                             window.location = "/"
                         </script>';
-                    } else {
+                        }
+                    }
+                    else {
+                        echo $user->getVerificationStatus();
                         echo 'Invalid password.';
                     }    
                 } else {
@@ -71,7 +78,7 @@ class LoginController extends Controller {
             $subject = "Musiva - Confirm email";
             $selector = bin2hex(random_bytes(8));
             $token = random_bytes(32);
-            $urlToEmail = 'localhost/login' . 'validation/validateemail?'.http_build_query([
+            $urlToEmail =  getHostingURL() . 'validation/validateemail?'.http_build_query([
                 'selector' => $selector,
                 'validator' => bin2hex($token)
             ]);

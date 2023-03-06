@@ -51,10 +51,22 @@ class ValidationController extends Controller {
         $body = __DIR__ . "/../View/Validation/resetPsswd.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
 
-          
     }
-    public function validateemail() {
-
+    public function validateEmail() {
+        if (isset($_GET['selector']) && isset($_GET['validator'])) {
+            $selector = $_GET['selector'];
+            $validator = $_GET['validator'];
+            $UserEmail = $this->TokenService->verifyTokenGetUserEmail($selector, $validator);
+            $this->TokenService->deleteTokenBySelector($selector);
+            if ($UserEmail) {
+                $this->UserService->verifyUser($UserEmail);
+            } else {
+                echo '<script>alert("Link expired")</script>';
+            }
+        }
+        require __DIR__ . '/../generalFunctions.php';
+        $body = __DIR__ . "/../View/Validation/validateEmail.php";
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
     }
 }
 ?>
