@@ -12,15 +12,20 @@ class UserService {
         $user = $dao->getAllUsers();
         return $user;
     }
+    public function createUser($name, $email, $password) {
+        $dao = new UserDAO();
+        $created = $dao->createUser($name, $email, $password);
+        return $created;
+    }
 
     public function updateUserByID($id, $name, $email, $role){
         $dao = new UserDAO();
         $updated = $dao->updateUserByID($id, $name, $email, $role);
         return $updated;
     }
-    public function updateUsersPassword($userID, $newPassword){
+    public function updateUsersPassword($userEmail, $newPassword){
         $dao = new UserDAO();
-        $updated = $dao->updateUsersPassword($userID, $newPassword);
+        $updated = $dao->updateUsersPassword($userEmail, $newPassword);
         return $updated;
     }
 

@@ -48,7 +48,7 @@
                           <tr>
                               <td><?= $user->getName() ?></td>
                               <td><?= $user->getEmail() ?></td>
-                              <td><a href="<?php __DIR__ . '/Controller/AdminController.php'?>?pswdResetID=<?= $user->getId()?>&pswdReset=<?= $user->getEmail()?>&pswdResetName=<?= $user->getName()?>" name="resetPswd">reset password</a></td>
+                              <td><a href="<?php __DIR__ . '/Controller/AdminController.php'?>?pswdReset=<?= $user->getEmail()?>&pswdResetName=<?= $user->getName()?>" name="resetPswd">reset password</a></td>
                               <td><?=($user->getIsAdmin() == 1) ? 'Admin' : 'User'; ?></td>
                               <td><?= $user->getRegistrationDate() ?></td>
                               <td class="td-actions text-right">

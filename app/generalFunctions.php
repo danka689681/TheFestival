@@ -20,6 +20,7 @@ function generateContent($header, $body, $footer){
 }
 
 function sendMail($subject, $htmlString, $bodyPlainText, $recepientMail, $recepientName) {
+    echo "Sending mail to " . $recepientMail . " with subject " . $subject . " and body " . $htmlString;
     $mail = new PHPMailer;
     //Enable SMTP debugging.
     $mail->SMTPDebug = 0;                           
@@ -31,12 +32,12 @@ function sendMail($subject, $htmlString, $bodyPlainText, $recepientMail, $recepi
     $mail->SMTPAuth = true;                      
     //Provide username and password
     $mail->Username = "musivagroup@gmail.com";             
-    $mail->Password = "jvwiklaaseoslymm";                       
+    $mail->Password = "zunigrbhzjxbhsss";                       
     //If SMTP requires TLS encryption then set it
     $mail->SMTPSecure = "tls";                       
     //Set TCP port to connect to
     $mail->Port = 587;                    
-    $mail->From = "no-reply@musiva.com";
+    $mail->From = "musivagroup@musiva.com";
     $mail->FromName = "Musiva";
     $mail->addAddress($recepientMail, $recepientName);
     $mail->isHTML(true);
@@ -46,3 +47,5 @@ function sendMail($subject, $htmlString, $bodyPlainText, $recepientMail, $recepi
     if($mail->send())
     {return true;}
 }
+
+?>
