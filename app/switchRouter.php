@@ -18,7 +18,14 @@ class SwitchRouter {
                 require __DIR__ . '/Controller/AdminController.php';
                 $controller = new AdminController();
                 $controller->users();
-                break;
+                break;  
+            case 'test': 
+                    require __DIR__ . '/Controller/AdminController.php';
+                    $dConroller = 'AdminController';
+                    $dMethod = 'index';
+                    $controller = new $dConroller;
+                    $controller->$dMethod();
+                    break; 
             case 'admin/visitHaarlem': 
                 require __DIR__ . '/Controller/AdminController.php';
                 $controller = new AdminController();
@@ -29,9 +36,23 @@ class SwitchRouter {
                 $controller = new AdminController();
                 $controller->festival();
                 break;
+            case 'account':
+                require __DIR__ . '/Controller/AccountController.php';
+                $controller = new AccountController();
+                $controller->index();
+                break;            
+            case 'account/changePassword':
+                require __DIR__ . '/Controller/AccountController.php';
+                $controller = new AccountController();
+                $controller->changePassword();
             case 'login': 
                 require __DIR__ . '/Controller/LoginController.php';
                 $controller = new LoginController();
+                $controller->index();
+                break;
+            case 'history': 
+                require __DIR__ . '/Controller/HistoryController.php';
+                $controller = new HistoryController();
                 $controller->index();
                 break;
             default:
