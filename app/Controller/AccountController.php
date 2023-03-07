@@ -49,20 +49,24 @@ class AccountController extends Controller{
             } else {
                 echo '<script>alert("Something went wrong, user not updated.")</script>';
             }
+
         }
 
-        //delete account 
-        if(isset($_POST['deleteAccount'])) {
+        //delete account
+        if(isset($_POST['deleteAccount'])){
+            echo "here";
             $deleted = $this->UserService->deleteUserByID($userId);
             if ($deleted) {
-                echo '<script>alert("Your account has been logged out and deleted.")</script>';
-                //logout logic
-                //navigate to login
+                echo '<script>alert("Your account was deleted.")</script>';
+                echo '<script type="text/javascript">
+                        window.location = "/logout"
+                    </script>';
             } else {
                 echo '<script>alert("Something went wrong, user not updated.")</script>';
 
             }
         }
+
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
         }
     }
@@ -70,8 +74,7 @@ class AccountController extends Controller{
       
 
         $newPassword = "";
-        $currentPassword_err = "";
-
+        $currentPassword_err = $confirmPassword_err = "";
         $currentUser = json_decode($_SESSION["User"]);
         $userEmail = $currentUser->{'Email'};
         
@@ -82,16 +85,12 @@ class AccountController extends Controller{
             $confirmPassword = trim($_POST["confirmPassword"]);
             if (!password_verify($currentPassword, $currentUser->{'password'})) {
                 $currentPassword_err = "Current Password incorrect!";
-                echo "Here 1";
             } else {
-                echo "Here 2";
 
                 if($newPassword != $confirmPassword){
                     $confirmPassword_err = "Passwords do not match!";
-                    echo "Here 3";
 
                 } else{
-                    echo "Here 4";
 
                     //update the password in the database
                     $this->UserService->updateUsersPassword($userEmail, password_hash($newPassword, PASSWORD_DEFAULT));

@@ -6,18 +6,16 @@
                     <div class="row" class="input-group">
                         <label class="inline-block">Current Password *</label>
                         <input id="currentPassword" type="password" name="currentPassword" class="form-control" onkeyup="textFilled()" required>
-                        <span class="invalid-feedback"><?php echo $currentPassword_err; ?></span>
+                        <span class="invalid-feedback custom"><?php echo $currentPassword_err; ?></span>
                     </div><br>
                     <div class="row">
                         <label class="inline-block">New Password *</label>
-                        <input id="password" value="<?php echo $newPassword?>" type="text" name="password" class="form-control" onkeyup="textFilled()" required>
-                        <span class="invalid-feedback"><?php echo $password_err; ?></span>
-
+                        <input id="password" type="password" name="password" class="form-control" onkeyup="textFilled()" required>
                     </div><br>
                     <div class="row">
                         <label class="inline-block">Confirm Password *</label>
                         <input id="confirmPassword" type="password" name="confirmPassword" class="form-control" onkeyup="textFilled()" required>
-                        <span class="invalid-feedback"><?php echo $ConfirmPassword_err; ?></span>
+                        <span class="invalid-feedback custom"><?php echo $confirmPassword_err; ?></span>
 
                     </div> <br>
                     <div class="row">

@@ -51,3 +51,37 @@
 .btn :hover{
     background-color: rgb(68, 105, 250);
 }
+.blur-bkg {
+    width: 100vw;
+    height: 100vh;
+    background: #0005;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 3;
+    display: none;
+}
+
+.form-container .form-row {
+    text-align: left;
+  }
+  .blur-bkg .form-group.col-md-6 {
+    margin: auto;
+  }
+
+  .blur-bkg .form-control {
+    width: auto;
+  }
+  .form-container-popup {
+    padding: 10px;
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    box-shadow: 0px 2px 18px 1px #888888;
+    border-radius: 8px;
+    padding: 3%;
+  }
+ 
