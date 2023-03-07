@@ -48,4 +48,17 @@ function sendMail($subject, $htmlString, $bodyPlainText, $recepientMail, $recepi
     {return true;}
 }
 
+function protectedRoute($route){
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+        echo '<script type="text/javascript">
+            window.location = /' . $route . '
+        </script>';
+    } else {
+        echo '<script type="text/javascript">
+            window.location = "/login"
+        </script>';
+    }
+} 
+
+
 ?>

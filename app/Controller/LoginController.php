@@ -48,7 +48,7 @@ class LoginController extends Controller {
                 if(!empty($user)){  
                     if (password_verify($password, $user->getPassword())) {
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["User"] = $user;
+                        $_SESSION["User"] = json_encode($user);
                         echo '<script type="text/javascript">
                             window.location = "/"
                         </script>';
