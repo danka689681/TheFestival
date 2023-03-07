@@ -3,6 +3,9 @@
 require __DIR__ . '/MainController.php';
 require __DIR__ . '/../DAL/TokenService.php';
 require __DIR__ . '/../DAL/UserService.php';
+require __DIR__ . '/../Model/User.php';
+require __DIR__ . '/../generalFunctions.php';
+require __DIR__ . '/../mailTemplates.php';
 
 
 class ValidationController extends Controller {
@@ -68,5 +71,42 @@ class ValidationController extends Controller {
         $body = __DIR__ . "/../View/Validation/validateEmail.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
     }
+
+    public function forgotPassword() {
+        if (isset($_GET['email'])) { 
+            $recepientMail =  trim($_GET['email']);
+            echo $recepientMail;
+            $recepientName =  $this->UserService->getUserByEmail($recepientMail)->getName();
+            echo $recepientName;
+            $subject = "Musiva - Reset Password";
+            $selector = bin2hex(random_bytes(8));
+            $token = random_bytes(32);
+            $urlToEmail = getHostingURL() . 'validation/resetpsswd?'.http_build_query([
+                'selector' => $selector,
+                'validator' => bin2hex($token)
+            ]);
+            $timezone = new DateTimeZone("Europe/Prague");
+            $expires = new DateTime();
+            $expires->setTimezone($timezone);
+            $expires->add(new DateInterval('PT10M')); // 10 min
+            if ($this->TokenService->tokenExists($recepientMail)) {
+                $this->TokenService->updateTokenByUserEmail($recepientMail, hash('sha256', $token), $selector, $expires);
+            } else {
+                $this->TokenService->createToken($recepientMail, $selector, hash('sha256', $token), $expires, 1);
+             }
+        
+            $htmlString = resetPasswordMailTemplate($recepientName, $urlToEmail);
+            $mailSent = sendMail($subject, $htmlString, $bodyPlainText=$htmlString, $recepientMail, $recepientName);
+            if ($mailSent) {
+                echo '<script>alert("Mail sent")</script>';
+            } else {
+                echo '<script>alert("Sending mail failed")</script>';
+            }
+        }
+        echo '<script type="text/javascript">
+                window.location = "/login"
+            </script>';
+    }
+    
 }
 ?>

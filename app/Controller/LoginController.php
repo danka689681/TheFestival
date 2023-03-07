@@ -129,6 +129,7 @@ class LoginController extends Controller {
                 );*/
             } 
         
+        
         $body = __DIR__ . "/../View/Login/index.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php '); 
     }
