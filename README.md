@@ -22,4 +22,8 @@ for **switching between branche**s:
 
      git checkout (name of the branch you want to switch to)
   
-  
+
+Database
+
+username: admin123
+password: secret123
