@@ -3,8 +3,6 @@ body {
     padding: 0;
 }
 
-
-
 .video-container{
     height: 860px;
 }
@@ -61,3 +59,16 @@ h1 {
     background-color: black;
     border-radius: 10px;
 }
+
+/* .row{
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+.column{
+    content: "";
+    clear: both;
+    display: table;
+    visibility: hidden;
+} */
