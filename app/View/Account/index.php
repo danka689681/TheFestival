@@ -24,6 +24,16 @@
           </form>
           <button id="btnDeleteAccount" class="btn" onclick="openDeleteAccountForm()" >Delete Account</button>
       </div>
+
+      <div class="blur-bkg" id="popup-deleteAccountForm">
+        <div class="form-popup">
+          <form method="POST" class="form-container-popup" id="deleteUserForm">
+            <h2 class="centered-text">Are you sure you want to delete your account? </h2>
+            <input type="submit" name="deleteAccount" class="btn btn-info" value="Yes" />
+            <button  type="button" class="btn btn-danger" onclick="closeDeleteUserForm()">No</button>
+          </form>
+        </div>
+      </div>
   </div>
 
 <script>
@@ -62,10 +72,10 @@
 
   //make it work
   function openDeleteAccountForm() {  
-         document.getElementById(`popup-deleteAccountForm`).style.display = "block";
+         document.getElementById('popup-deleteAccountForm').style.display = "block";
       }
   function closeDeleteUserForm() {
-        document.getElementById(`popup-deleteAccountForm`).style.display = "none";
+        document.getElementById('popup-deleteAccountForm').style.display = "none";
       }
   
 
