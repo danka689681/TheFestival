@@ -36,6 +36,15 @@ class SwitchRouter {
                 $controller = new AdminController();
                 $controller->festival();
                 break;
+            case 'account':
+                require __DIR__ . '/Controller/AccountController.php';
+                $controller = new AccountController();
+                $controller->index();
+                break;            
+            case 'account/changePassword':
+                require __DIR__ . '/Controller/AccountController.php';
+                $controller = new AccountController();
+                $controller->changePassword();
             case 'login': 
                 require __DIR__ . '/Controller/LoginController.php';
                 $controller = new LoginController();

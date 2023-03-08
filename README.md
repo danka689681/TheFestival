@@ -20,6 +20,10 @@ for **pushing new changes** to the repository:
   
 for **switching between branche**s:
 
-     git checkout (name of the branch you want to switch to)`     
+     git checkout (name of the branch you want to switch to)
   
-  a
+
+Database
+
+username: admin123
+password: secret123

@@ -17,5 +17,6 @@ class HistoryController extends Controller {
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
           
     }
+    
 }
 ?>

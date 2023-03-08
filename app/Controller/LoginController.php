@@ -52,7 +52,7 @@ class LoginController extends Controller {
                         }
                         else {
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["User"] = $user;
+                        $_SESSION["User"] = json_encode($user);
                         echo '<script type="text/javascript">
                             window.location = "/"
                         </script>';

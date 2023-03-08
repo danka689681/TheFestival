@@ -19,7 +19,18 @@
       something for everyone. Take a step back in time by visiting museums such as the Frans Hals Museum and Teylers
       Museum, enjoy the local cuisine, and catch a performance at one of the many theaters in town. Haarlem truly has
       it all!</p>
-  </div>
+      <div class="row">
+        <div class="column">
+          <img src="../assets/img/homepage/history.png" alt="History" style="width:70%">
+        </div>
+        <div class="column">
+          <img src="../assets/img/homepage/food.png" alt="Food" style="width:70%">
+        </div>
+        <div class="column">
+          <img src="../assets/img/homepage/culture.png" alt="Culture" style="width:70%">
+        </div>
+      </div>
+    </div>
   <div class="section1">
     <h1>THE FESTIVAL</h1>
     <p>Don&rsquo;t miss a unique opportunity to attend one of the biggest festivals in the North Holland province. Try
