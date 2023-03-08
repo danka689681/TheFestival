@@ -7,6 +7,9 @@ require __DIR__ . '/../DAL/UserService.php';
 require __DIR__ . '/../Model/User.php';
 require __DIR__ . '/../DAL/TokenService.php';
 require __DIR__ . '/../Model/Token.php';
+require __DIR__ . '/../Enum/Role.php';
+require __DIR__ . '/../Enum/Password.php';
+
 class AdminController extends Controller {
     public $header;
     public $footer;
@@ -30,7 +33,10 @@ class AdminController extends Controller {
        $color = "yellow";
        $users = $this->UserService->getAllUsers();
        $displayUsers = $users;
-
+       $filterBy = "";
+       $group = "";
+       $setSort = "";
+       $setSortType = "";
        $descArrowClass = "fa-thin fa-sort-down btnHidden";
        $ascArrowClass = "fa-duotone fa-sort btnVisible";
        $searchInput = "";
@@ -45,6 +51,27 @@ class AdminController extends Controller {
             
         }
         
+        if(isset($_GET['filter'])) {
+            $filterBy = $_GET['filter'];
+            $group = $_GET['group'];
+            if ($filterBy != "" && $group != "undefined") {
+                if ($group == "Role") {
+                    foreach ($displayUsers as $displayUser) {
+                        $role = $displayUser->getRole() == "" ? "User" : $displayUser->getRole();
+                        if (Role::from($role)->name != $filterBy) {
+                                unset($displayUsers[array_search($displayUser, $displayUsers)]);                
+                        }  
+                    }
+                } elseif ($group == "Password") {
+                    foreach ($displayUsers as $displayUser) {
+                        $password = $displayUser->getPassword() == null ? "notSet" : "set";
+                        if (Password::from($password)->name != $filterBy) {
+                                unset($displayUsers[array_search($displayUser, $displayUsers)]);                
+                        }  
+                    }
+                } 
+            }
+        }
         if(isset($_POST['updateUser'])) {
             $id = trim($_POST["userID"]);
             $name = trim($_POST["name"]);
@@ -55,6 +82,26 @@ class AdminController extends Controller {
                 foreach ($displayUsers as $key => $row)
                 {
                     if ($id == $row->getID()) {
+                        $row->setName($name);
+                        $row->setEmail($email);
+                        $row->setRole($role);
+                    } 
+                }
+            } else {
+                echo '<script>alert("Something went wrong, user not updated.")</script>';
+
+            }
+        }
+
+        if(isset($_POST['createUser'])) {
+            $name = trim($_POST["name"]);
+            $email = trim($_POST["email"]);
+            $password = $confirmPassword = "";
+            $created = createUser($email, $name, $password, $confirmPassword);
+            if ($created) {
+                foreach ($displayUsers as $key => $row)
+                {
+                    if ($email == $row->getEmail()) {
                         $row->setName($name);
                         $row->setEmail($email);
                         $row->setIsAdmin($role);
@@ -105,12 +152,17 @@ class AdminController extends Controller {
             $mailSent = sendMail($subject, $htmlString, $bodyPlainText=$htmlString, $recepientMail, $recepientName);
             if ($mailSent) {
                 echo '<script>alert("Mail sent")</script>';
+                echo '<script type="text/javascript">
+                window.location = "/admin/users"
+            </script>';
+
             } else {
                 echo '<script>alert("Sending mail failed")</script>';
             }
         }
         if (isset($_GET['dir'])) {
-            
+            $setSort = $_GET['sort'];
+            $setSortType = $_GET['dir'];
             $sort = array();
             foreach ($displayUsers as $key => $row)
             {

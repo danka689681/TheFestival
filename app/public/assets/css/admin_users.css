@@ -77,6 +77,9 @@
     display: none;
   }
 
+  .BlueText {
+    color: #2CA8FF;
+  }
 @media only screen and (min-width: 1024px) {
     .form-container {
         left: 60%;

@@ -20,7 +20,6 @@ function generateContent($header, $body, $footer){
 }
 
 function sendMail($subject, $htmlString, $bodyPlainText, $recepientMail, $recepientName) {
-    echo "Sending mail to " . $recepientMail . " with subject " . $subject . " and body " . $htmlString;
     $mail = new PHPMailer;
     //Enable SMTP debugging.
     $mail->SMTPDebug = 0;                           
@@ -48,4 +47,55 @@ function sendMail($subject, $htmlString, $bodyPlainText, $recepientMail, $recepi
     {return true;}
 }
 
+
+function createUser($email, $name, $password, $confirmPassword) {
+    require_once __DIR__ . '/mailTemplates.php';
+    require_once __DIR__ . '/DAL/UserService.php';
+    require_once __DIR__ . '/Model/User.php';
+    require_once __DIR__ . '/DAL/TokenService.php';
+    require_once __DIR__ . '/Model/Token.php';
+    $UserService = new UserService();
+    $TokenService = new TokenService();
+
+    $secretAPIkey = "6LffltEkAAAAAPBfKt38wQyyXLJmuioLBelpHlHw";
+    $subject = "Musiva - Confirm email";
+    $selector = bin2hex(random_bytes(8));
+    $token = random_bytes(32);
+    $urlToEmail = 'localhost/login' . 'validation/validateemail?'.http_build_query([
+        'selector' => $selector,
+        'validator' => bin2hex($token)
+    ]);
+                if ($password == $confirmPassword) {
+                    $user = $UserService->getUserByEmail($email);
+                    if ($user == null) {
+                        $timezone = new DateTimeZone("Europe/Prague");
+                        $expires = new DateTime();
+                        $expires->setTimezone(new DateTimeZone("Europe/Prague"));
+                        $expires->add(new DateInterval('P3M')); // + 3 months
+                        $password == "" ? null : password_hash($password, PASSWORD_DEFAULT);
+                        $UserService->createUser($name, $email, $password);
+                        echo '<script>alert("User created!")</script>';
+                        if ($TokenService->tokenExists($email)) {
+                            $TokenService->updateTokenByUserEmail($email, hash('sha256', $token), $selector, $expires);
+                        } else {
+                            $TokenService->createToken($email, $selector, hash('sha256', $token), $expires, 0);
+                         }
+                        $htmlString = confirmEmailTemplate($name, $urlToEmail);
+                        $mailSent = sendMail($subject, $htmlString, $bodyPlainText=$htmlString, $email, $name);
+                        if ($mailSent) {
+                            echo '<script>alert("Mail sent")</script>';
+                            return true;
+                        } else {
+                            echo '<script>alert("Sending mail failed")</script>';
+                            return false;
+                        }
+                    } else {
+                        echo '<script>alert("User already exists!")</script>';
+                        return false;
+                    }
+                } else {
+                    echo '<script>alert("Passwords do not match!")</script>';
+                    return false;
+                }
+}
 ?>
