@@ -31,6 +31,5 @@
   <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
   <link href="../assets/css/now-ui-dashboard.css?v=1.5.0" rel="stylesheet" />
   <link href="../assets/css/admin.css" rel="stylesheet" />
-  <link href="../assets/css/home.css" rel="stylesheet" />
 </head>
 
