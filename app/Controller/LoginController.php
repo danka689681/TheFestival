@@ -74,48 +74,8 @@ class LoginController extends Controller {
             $regName = $_POST["register-name"];
             $regPassword = $_POST["register-password"];
             $regConfirmPassword = $_POST["register-confirm-password"];
-            $secretAPIkey = "6LffltEkAAAAAPBfKt38wQyyXLJmuioLBelpHlHw";
-            $subject = "Musiva - Confirm email";
-            $selector = bin2hex(random_bytes(8));
-            $token = random_bytes(32);
-            $urlToEmail =  getHostingURL() . 'validation/validateemail?'.http_build_query([
-                'selector' => $selector,
-                'validator' => bin2hex($token)
-            ]);
-            /*if(isset($_POST['g-rloginecaptcha-response']) && !empty($_POST['g-recaptcha-response'])) {
-                echo 'test';
-                $testSecretKey = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe";
-                // reCAPTCHA response verification
-                $verifyResponse = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret='.$testSecretKey.'&response='.$_POST['g-recaptcha-response']);
-                $response = json_decode($verifyResponse); 
-                    if($response->success){*/
-                        if ($regPassword == $regConfirmPassword) {
-                            $user = $this->UserService->getUserByEmail($regEmail);
-                            if ($user == null) {
-                                $timezone = new DateTimeZone("Europe/Prague");
-                                $expires = new DateTime();
-                                $expires->setTimezone(new DateTimeZone("Europe/Prague"));
-                                $expires->add(new DateInterval('P3M')); // + 3 months
-                                $this->UserService->createUser($regName, $regEmail, $regPassword);
-                                echo '<script>alert("User created!")</script>';
-                                if ($this->TokenService->tokenExists($regEmail)) {
-                                    $this->TokenService->updateTokenByUserEmail($regEmail, hash('sha256', $token), $selector, $expires);
-                                } else {
-                                    $this->TokenService->createToken($regEmail, $selector, hash('sha256', $token), $expires, 0);
-                                }
-                                $htmlString = confirmEmailTemplate($regName, $urlToEmail);
-                                $mailSent = sendMail($subject, $htmlString, $bodyPlainText=$htmlString, $regEmail, $regName);
-                                if ($mailSent) {
-                                    echo '<script>alert("Mail sent")</script>';
-                                } else {
-                                    echo '<script>alert("Sending mail failed")</script>';
-                                }
-                            } else {
-                                echo '<script>alert("User already exists!")</script>';
-                            }
-                        } else {
-                            echo '<script>alert("Passwords do not match!")</script>';
-                        }
+            createUser($regEmail, $regName, $regPassword, $regConfirmPassword);
+
                     /*} else {
                         $response = array(
                             "status" => "alert-danger",

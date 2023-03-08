@@ -6,7 +6,8 @@ class User implements JsonSerializable {
     private $Name;
     private $Email;
     private $password;
-    private $IsAdmin;
+    private $Role;
+
     private $RegistrationDate;
     private $EmailVerified;
     /**
@@ -111,26 +112,27 @@ class User implements JsonSerializable {
 
         return $this;
     }
-         /**
-     * Get the value of isAdmin
+    
+    /**
+     * Get the value of Role
      *
-     * @return bool
+     * @return string
      */
-    public function getIsAdmin(): bool
+    public function getRole(): string
     {
-        return $this->IsAdmin;
+        return $this->Role;
     }
 
     /**
-     * Set the value of isAdmin
+     * Set the value of Role
      *
-     * @param bool $IsAdmin
+     * @param string $Role
      *
      * @return self
      */
-    public function setIsAdmin(bool $IsAdmin): self
+    public function setRole(string $Role): self
     {
-        $this->IsAdmin = $IsAdmin;
+        $this->Role = $Role;
 
         return $this;
     }

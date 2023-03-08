@@ -5,7 +5,7 @@ class UserDAO extends Database {
    
     function getUserByEmail($email) {
         try { 
-            $stmt = $this->connection->prepare("SELECT ID, Name, Email, EmailVerified, password, IsAdmin, RegistrationDate FROM users WHERE Email = ?");
+            $stmt = $this->connection->prepare("SELECT ID, Name, Email, EmailVerified, password, Role, RegistrationDate FROM users WHERE Email = ?");
             $stmt->execute([$email]);
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
             $user = $stmt->fetch();
@@ -17,7 +17,7 @@ class UserDAO extends Database {
 
     function getAllUsers() {
         try {
-            $stmt = $this->connection->prepare("SELECT ID, Name, Email, EmailVerified, password, IsAdmin, RegistrationDate FROM users");
+            $stmt = $this->connection->prepare("SELECT ID, Name, Email, EmailVerified, password, Role, RegistrationDate FROM users");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
             $users = $stmt->fetchAll();
@@ -30,7 +30,7 @@ class UserDAO extends Database {
     }
     function updateUserByID($id, $name, $email, $role) {
          try {
-            $stmt = $this->connection->prepare("UPDATE users SET Name = ?, Email = ?, IsAdmin = ? WHERE ID = ?;");
+            $stmt = $this->connection->prepare("UPDATE users SET Name = ?, Email = ?, Role = ? WHERE ID = ?;");
             $stmt->bindValue(1, $name);
             $stmt->bindValue(2, $email);
             $stmt->bindValue(3, $role);
@@ -62,7 +62,7 @@ class UserDAO extends Database {
             $stmt = $this->connection->prepare("INSERT INTO users (Name, Email, Password) VALUES (?, ?, ?)");
             $stmt->bindValue(1, $name);
             $stmt->bindValue(2, $email);
-            $stmt->bindValue(3, password_hash($password, PASSWORD_DEFAULT));
+            $stmt->bindValue(3, $password);
             $stmt->execute();
             return true;
         } catch (PDOException $e) {
