@@ -47,7 +47,6 @@ function sendMail($subject, $htmlString, $bodyPlainText, $recepientMail, $recepi
     {return true;}
 }
 
-
 function createUser($email, $name, $password, $confirmPassword) {
     require_once __DIR__ . '/mailTemplates.php';
     require_once __DIR__ . '/DAL/UserService.php';
@@ -98,4 +97,19 @@ function createUser($email, $name, $password, $confirmPassword) {
                     return false;
                 }
 }
+
+function protectedRoute($route){
+    if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
+        echo '<script type="text/javascript">
+            window.location = /' . $route . '
+        </script>';
+    } else {
+        echo '<script type="text/javascript">
+            window.location = "/login"
+        </script>';
+    }
+} 
+
+
+
 ?>

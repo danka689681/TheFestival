@@ -6,11 +6,12 @@
 				<button type="button" class="toggle-btn" onclick="register()">Register</button>
 			</div>
 		    	<form id="login" class="input-group" method="POST">
-		    		<input type="email" name="email"class="input-field" placeholder="Email" required>
+		    		<input type="email" name="email"class="input-field" id="loginEmail" placeholder="Email" value="<?php $email?>" required>
                     <span class="invalid-feedback"><?php echo $email_err; ?></span>
 		    		<input type="password" name="password" class="input-field" placeholder="Password" required>
                     <span class="invalid-feedback"><?php echo $password_err; ?></span>
-                    <button type="submit" name="login" class="btn btn-primary">Login</button>
+					<a href="#" class="forgotPassword" onclick="forgotPassword()">Forgot Password?</a>
+                    <button type="submit" name="login" class="btn btn-primary PrimaryBtn">Login</button>
 		    	</form>
  
 		    	<form id="register" class="input-group" method="POST">
@@ -19,7 +20,7 @@
 		    		<input type="password" name="register-password"class="input-field" placeholder="Password" required>
 					<input type="password" name="register-confirm-password"class="input-field" placeholder="Confirm password" required>
 					<div class="g-recaptcha" data-sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"></div> 
-                    <button type="submit" name="register" class="btn btn-primary">Register</button>
+                    <button type="submit" name="register" class="btn btn-primary PrimaryBtn">Register</button>
 		    	</form>
 				<form id="recaptcha" class="input-group" method="POST">
 			 <!--	<div class="g-recaptcha" data-sitekey="6LffltEkAAAAAO87rv5-5Al6forQsIg7OCZnei0X"></div> -->
@@ -32,5 +33,15 @@
         css.rel = 'stylesheet';
         css.href = '../assets/css/login.css';
         document.head.appendChild(css);
+
+		function forgotPassword() {
+			email = document.getElementById('loginEmail').value
+			if (email == "") {
+				alert("Please enter your email address");
+			}
+			else {
+				window.location = "/validation/forgotPassword?email=" + email;
+			}
+		}
     </script>
     <script type="text/javascript" src="../assets/js/login.js"></script>

@@ -44,15 +44,22 @@ class LoginController extends Controller {
             }
             if(empty($email_err) && empty($password_err)){
                 $user = $this->UserService->getUserByEmail($email);
-    
+                
                 if(!empty($user)){  
                     if (password_verify($password, $user->getPassword())) {
+                        if (!$user->getVerificationStatus()) {
+                            echo 'Please verify your email address before logging in.';
+                        }
+                        else {
                         $_SESSION["loggedin"] = true;
-                        $_SESSION["User"] = $user;
+                        $_SESSION["User"] = json_encode($user);
                         echo '<script type="text/javascript">
                             window.location = "/"
                         </script>';
-                    } else {
+                        }
+                    }
+                    else {
+                        echo $user->getVerificationStatus();
                         echo 'Invalid password.';
                     }    
                 } else {
@@ -68,6 +75,7 @@ class LoginController extends Controller {
             $regPassword = $_POST["register-password"];
             $regConfirmPassword = $_POST["register-confirm-password"];
             createUser($regEmail, $regName, $regPassword, $regConfirmPassword);
+
                     /*} else {
                         $response = array(
                             "status" => "alert-danger",
@@ -80,6 +88,7 @@ class LoginController extends Controller {
                     "message" => "Plese check on the reCAPTCHA box."
                 );*/
             } 
+        
         
         $body = __DIR__ . "/../View/Login/index.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php '); 

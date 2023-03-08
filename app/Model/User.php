@@ -9,7 +9,8 @@ class User implements JsonSerializable {
     private $Role;
 
     private $RegistrationDate;
-/**
+    private $EmailVerified;
+    /**
      * Get the value of id
      *
      * @return int
@@ -18,7 +19,14 @@ class User implements JsonSerializable {
     {
         return $this->ID;
     }
-
+    public function getVerificationStatus(): bool
+    {
+        if ($this->EmailVerified == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     /**
      * Set the value of id
      *

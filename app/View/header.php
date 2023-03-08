@@ -1,10 +1,9 @@
 <div>
    <nav class="navbar navbar-expand-lg bg-black">
       <div class="container customized-nav-container">
-         <!-- <ul class="navbar-nav"> -->
-         <ul class="navbar-nav">
-            <li class="nav-item active">
-               <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+         <ul class="navbar-nav left-side">
+            <li class="nav-item <?php echo ($_SERVER['REQUEST_URI'] == '/home' ? ' active' : ''); ?>">
+               <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
                <a class="nav-link" href="#">History</a>
@@ -15,36 +14,46 @@
             <li class="nav-item">
                <a class="nav-link" href="#">Food</a>
             </li>
-            <!-- <li class="nav-item">
-               <img class="custom-logo" src="../assets/img/Logo.png">
-               </li> -->
          </ul>
-         <img class="custom-logo" src="../assets/img/Logo.png">
-         <ul class="navbar-nav">
+            <li> <a href="/home"><img id="logo" src="../assets/img/Logo.png" href="/home"></a>
+            </li>
+         <ul class="navbar-nav right-side">
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-               Festival
+                  Festival
                </a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <a class="dropdown-item" href="#">Stroll Through History</a>
-                  <a class="dropdown-item" href="#">Yummy</a>
-                  <a class="dropdown-item" href="#">Dance</a>
+                  <a class="dropdown-item" href="/history">Stroll Through History</a>
+                  <a class="dropdown-item" href="/yummy">Yummy</a>
+                  <a class="dropdown-item" href="/dance">Dance</a>
                </div>
             </li>
-            <li>
+            <li class="nav-item">
                <i class="fa-solid fa-heart"></i>
             </li>
-            <li>
+            <li class="nav-item">
                <i class="fa-solid fa-cart-shopping"></i>
             </li>
-            <li>
-               <i class="fa-solid fa-user"></i>
-            </li>
+            <?php if (isset($_SESSION['User'])) { ?>
+               <li class="nav-item dropdown">
+                  <a class="" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                     aria-expanded="false">
+                     <i class="fa-solid fa-user"></i>
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                     <a class="dropdown-item" href="/logout">Logout</a>
+                  </div>
+               </li>
+            <?php } else { ?>
+               <li class="nav-item">
+                  <a class="nav-link" href="/Login">Login</a>
+               </li>
+            <?php } ?>
             <li class="nav-item dropdown">
                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown"
                   aria-haspopup="true" aria-expanded="false">
-               English
+                  English
                </a>
                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                   <a class="dropdown-item" href="#">English</a>
@@ -61,6 +70,6 @@
 <script>
    var css = document.createElement('link');
    css.rel = 'stylesheet';
-   css.href = '../assets/css/navbar.css';
+   css.href = '../assets/css/header.css';
    document.head.appendChild(css);
 </script>

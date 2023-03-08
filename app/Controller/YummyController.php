@@ -1,7 +1,9 @@
 <?php
+// Initialize the session
 require __DIR__ . '/MainController.php';
 
-class HistoryController extends Controller {
+
+class YummyController extends Controller {
     public $header;
     public $footer;
 
@@ -13,10 +15,8 @@ class HistoryController extends Controller {
 
     public function index() {
         require __DIR__ . '/../generalFunctions.php';
-        $body = __DIR__ . "/../View/History/index.php";
+        $body = __DIR__ . "/../View/Yummy/index.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
-          
     }
-    
 }
 ?>

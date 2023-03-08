@@ -19,6 +19,17 @@
       something for everyone. Take a step back in time by visiting museums such as the Frans Hals Museum and Teylers
       Museum, enjoy the local cuisine, and catch a performance at one of the many theaters in town. Haarlem truly has
       it all!</p>
+    <div class="row">
+      <div class="column">
+        <img src="../assets/img/homepage/history.png" alt="History" style="width:70%">
+      </div>
+      <div class="column">
+        <img src="../assets/img/homepage/food.png" alt="Food" style="width:70%">
+      </div>
+      <div class="column">
+        <img src="../assets/img/homepage/culture.png" alt="Culture" style="width:70%">
+      </div>
+    </div>
   </div>
   <div class="section1">
     <h1>THE FESTIVAL</h1>
@@ -27,14 +38,44 @@
       city&rsquo;s rich, old architecture. Even the kids won&rsquo;t miss out on the fun, with specially curated
       programs to make
       sure they enjoy the festival as much as you do.</p>
+    <div class="row">
+      <div class="column">
+        <img src="../assets/img/homepage/festival-history.png" alt="Stroll through history" style="width:70%">
+      </div>
+      <div class="column">
+        <img src="../assets/img/homepage/festival-yummy.png" alt="Yummy" style="width:70%">
+      </div>
+      <div class="column">
+        <img src="../assets/img/homepage/festival-dance.png" alt="Dance" style="width:70%">
+      </div>
+    </div>
   </div>
   <div class="section2">
     <h1 class="section2-title">OUR EVENTS</h1>
+    <div class="row">
+      <div class="column">
+        <img src="../assets/img/homepage/groteMarkt.png" alt="Grote Markt" style="width:70%">
+      </div>
+      <div class="column">
+        <img src="../assets/img/homepage/restaurant.png" alt="Restaurant" style="width:70%">
+      </div>
+      <div class="column">
+        <img src="../assets/img/homepage/martinGarrix.png" alt="Martin Garrix" style="width:70%">
+      </div>
+    </div>
   </div>
   <div class="section2">
     <h1>BONUS - The Secret of Professor Teyler</h1>
+    <img src="../assets/img/homepage/professorTeyler.png" alt="Profesor Teyler">
   </div>
   <div class="section2">
     <h1>EVENTS SCHEDULE</h1>
   </div>
 </div>
+
+<script>
+  var css = document.createElement('link');
+  css.rel = 'stylesheet';
+  css.href = '../assets/css/home.css';
+  document.head.appendChild(css);
+</script>

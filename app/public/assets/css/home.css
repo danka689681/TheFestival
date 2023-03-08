@@ -3,8 +3,6 @@ body {
     padding: 0;
 }
 
-
-
 .video-container{
     height: 860px;
 }
@@ -60,4 +58,8 @@ h1 {
     color: white;
     background-color: black;
     border-radius: 10px;
+}
+
+.row{
+    width: 100%;
 }

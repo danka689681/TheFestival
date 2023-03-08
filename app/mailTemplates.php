@@ -10,7 +10,7 @@ function resetPasswordMailTemplate($recepientName, $urlToEmail) {
 function confirmEmailTemplate($recepientName, $urlToEmail) {
     $htmlString = 
     '<div>Hello ' . $recepientName  .',</div>' .
-    '<p>Click on <a href="'.$urlToEmail.'">this</a> link to confirm your email.</p>' .
+    '<p>Click on <a href="'.$urlToEmail.'">this</a> link to confirm your email and complete your registration.</p>' .
     '<p>Best wishes,</p>' .
     '<p>Musiva team</p>';
     return $htmlString;

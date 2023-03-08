@@ -5,7 +5,7 @@ class UserDAO extends Database {
    
     function getUserByEmail($email) {
         try { 
-            $stmt = $this->connection->prepare("SELECT ID, Name, Email, password, Role, RegistrationDate FROM users WHERE Email = ?");
+            $stmt = $this->connection->prepare("SELECT ID, Name, Email, EmailVerified, password, Role, RegistrationDate FROM users WHERE Email = ?");
             $stmt->execute([$email]);
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
             $user = $stmt->fetch();
@@ -17,7 +17,7 @@ class UserDAO extends Database {
 
     function getAllUsers() {
         try {
-            $stmt = $this->connection->prepare("SELECT ID, Name, Email, password, Role, RegistrationDate FROM users");
+            $stmt = $this->connection->prepare("SELECT ID, Name, Email, EmailVerified, password, Role, RegistrationDate FROM users");
             $stmt->execute();
             $stmt->setFetchMode(PDO::FETCH_CLASS, 'User');
             $users = $stmt->fetchAll();
@@ -81,7 +81,17 @@ class UserDAO extends Database {
            echo $e;
            return false;
        }
-   }
-
-
+    }
+   function verifyUser($email) {
+    try {
+        $stmt = $this->connection->prepare("UPDATE users SET EmailVerified = 1 WHERE Email = ?;");
+        $stmt->execute([$email]);
+        $stmt->execute();
+        return true;
+    } catch (PDOException $e)
+    {
+        echo $e;
+        return false;
+    }
+    }
 }
