@@ -50,7 +50,6 @@ class ValidationController extends Controller {
             }
         }
 
-        require __DIR__ . '/../generalFunctions.php';
         $body = __DIR__ . "/../View/Validation/resetPsswd.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
 
