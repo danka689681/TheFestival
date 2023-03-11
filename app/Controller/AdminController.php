@@ -212,5 +212,10 @@ class AdminController extends Controller {
         $body = __DIR__ . "/../View/Admin/festival.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');    
     }
+    public function dance() {
+        $color = "blue";
+        $body = __DIR__ . "/../View/Admin/dance.php";
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');    
+    }
 }
 ?>
