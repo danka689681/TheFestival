@@ -10,9 +10,9 @@
       </div>
       <div class="card" style="width: 20rem;">
          <div class="card-body">
-            <h4 class="card-title">Vanues</h4>
+            <h4 class="card-title">Venues</h4>
             <p class="card-text">Manage vanues</p>
-            <a href="/admin/vanues" class="btn btn-primary">Show Details</a>
+            <a href="/admin/venues" class="btn btn-primary">Show Details</a>
          </div>
       </div>
       <div class="card" style="width: 20rem;">

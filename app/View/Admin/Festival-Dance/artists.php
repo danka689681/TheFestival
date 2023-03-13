@@ -9,8 +9,8 @@
                   <h4 class="card-title">Artists</h4>
                   <a href="/admin/editartist?id=" type="button" rel="tooltip"  class="btn btn-info"  onclick="openCreateForm('createArtist', ' ')">Create Artist</a>      
                <form method="POST" class="searchForm">
-                     <input class="searchIput form-control" name="searchUsers" type="text">
-                     <input type="submit" id="searchUsersBtn" class="btn btn-warning btn-round" value="Search">
+                     <input class="searchIput form-control" name="searchArtists" type="text">
+                     <input type="submit" id="searchArtistsBtn" class="btn btn-warning btn-round" value="Search">
                    </form>     
             </div>
                <div class="card-body">
