@@ -30,10 +30,14 @@
                <p>Visit Haarlem</p>
             </a>
          </li>
-         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/festival' || $_SERVER['REQUEST_URI'] == '/admin/festival/'  ? 'active' : '');?>">
-            <a href="/admin/festival">
+         <li>
+            <p class="navHeading">Festival</p>
+            <hr class="navSeparator">
+         </li>
+         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/dance' || $_SERVER['REQUEST_URI'] == '/admin/dance/'  ? 'active' : '');?>">
+            <a href="/admin/dance">
                <i class="fa-solid fa-icons fa-fw fa-2x"></i>
-               <p>Festival</p>
+               <p>Dance</p>
             </a>
          </li>
          <li class="nav-bottom">

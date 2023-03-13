@@ -2,6 +2,7 @@
 class Image implements JsonSerializable {
     public function jsonSerialize() : mixed { return get_object_vars($this); }
     private $ID;
+    private $Name;
     private $ForeignKeyID;
     private $Type;
     private $IsLogo;
@@ -25,6 +26,30 @@ class Image implements JsonSerializable {
     public function setId(int $ID): self
     {
         $this->ID = $ID;
+
+        return $this;
+    }
+
+     /**
+     * Get the value of Name
+     *
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->Name;
+    }
+
+    /**
+     * Set the value of Name
+     *
+     * @param string $Name
+     *
+     * @return self
+     */
+    public function setName(string $Name): self
+    {
+        $this->Name = $Name;
 
         return $this;
     }

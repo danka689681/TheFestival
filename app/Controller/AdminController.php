@@ -9,18 +9,24 @@ require __DIR__ . '/../DAL/TokenService.php';
 require __DIR__ . '/../Model/Token.php';
 require __DIR__ . '/../Enum/Role.php';
 require __DIR__ . '/../Enum/Password.php';
-
+require __DIR__ . '/../Model/Artist.php';
+require __DIR__ . '/../DAL/ArtistService.php';
+require __DIR__ . '/../DAL/ImageService.php';
 class AdminController extends Controller {
     public $header;
     public $footer;
     private $UserService;
     private $TokenService;
+    private $ArtistService;
+    private $ImageService;
 
     function __construct() {
         $this->header =  __DIR__ . "/../View/Admin/adminHeader.php"; 
         $this->footer =  __DIR__ . "/../View/Admin/adminFooter.php"; 
         $this->UserService = new UserService();
         $this->TokenService = new TokenService();
+        $this->ArtistService = new ArtistService();
+        $this->ImageService = new ImageService();
 
     }
  
@@ -123,7 +129,7 @@ class AdminController extends Controller {
                     } 
                 }
             } else {
-                echo '<script>alert("Something went wrong, user not updated.")</script>';
+                echo '<script>alert("Something went wrong, user not deleted.")</script>';
 
             }
         }
@@ -207,9 +213,105 @@ class AdminController extends Controller {
         $body = __DIR__ . "/../View/Admin/visitHaarlem.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
     }
-    public function festival() {
+    public function dance() {
         $color = "blue";
-        $body = __DIR__ . "/../View/Admin/festival.php";
+        $body = __DIR__ . "/../View/Admin/Festival-Dance/dance.php";
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');    
+    }
+    public function artists() {
+        $color = "blue";
+        $displayArtists = $this->ArtistService->getAllArtists();
+        if(isset($_POST['deleteArtist'])) {
+            $ID = trim($_POST["artistID"]);
+            $deleted = $this->ArtistService->deleteArtistByID($ID);
+            if ($deleted) {
+                echo '<script type="text/javascript">
+                window.location = "/admin/artists"
+                </script>';
+              
+            } else {
+                echo '<script>alert("Something went wrong, artist not updated.")</script>';
+
+            }
+        }
+
+        $body = __DIR__ . "/../View/Admin/Festival-Dance/artists.php";
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');    
+    }
+
+    public function editArtist() {
+        $color = "blue";
+        $artist = "";
+        if(isset($_GET['id'])) {
+            $artistID = $_GET['id'];
+            if ($artistID) {
+                $artist = $this->ArtistService->getArtistByID($artistID)[0];
+            } 
+        }
+
+        if(isset($_GET['deleteImage'])) {
+            $ID = trim($_GET["deleteImage"]);
+            $deleted = $this->ImageService->deleteArtistImageByID($ID);
+            if ($deleted) {
+                echo '<script type="text/javascript">
+                window.location = "/admin/editartist?id=' . trim($_GET["id"]) . '"
+                </script>';
+              
+            } else {
+                echo '<script>alert("Something went wrong, user not updated.")</script>';
+
+            }
+        }
+        if(isset($_POST['updateArtist'])) {
+            if (isset($_POST['artistID'])) {
+                $artistID = trim($_POST['artistID']);
+            }
+            $artistName = trim($_POST['artistName']);
+            $artistDescription = trim($_POST['artistDescription']);
+            $artistYoutube = trim($_POST['artistYoutube']);
+            $artistSpotify = trim($_POST['artistSpotify']);
+            $artistDemoSong= trim($_POST['artistDemoSong']);
+           
+            $artistLogo = isset($_FILES['artistLogo']) ? $_FILES['artistLogo'] : null;
+            $artistImages = isset($_FILES['artistImages']) ? $_FILES['artistImages'] : null;
+            $logoUpdated = true;
+            $imagesUpdated = true;
+
+            if ($artistID) {
+                $updated = $this->ArtistService->updateArtistByID($artistID, $artistName, $artistDescription, $artistYoutube, $artistSpotify, $artistDemoSong);
+            } else {
+                $artistID = $this->ArtistService->createArtist($artistName, $artistDescription, $artistYoutube, $artistSpotify, $artistDemoSong);
+                $updated = $artistID == false ? false : true;
+            }
+        
+            if ($artistLogo && $artistID) {
+                $type = substr($artistLogo['type'], strpos($artistLogo['type'], "/") + 1);
+                $logoUpdated = $this->ImageService->createArtistImage($artistLogo['name'], $artistID,  $type, 1, file_get_contents($artistLogo['tmp_name']));
+            }
+            if ($artistImages && $artistID) {
+                $files = array_filter($artistImages['name']); 
+                $total_count = count($artistImages['name']);
+                for( $i=0 ; $i < $total_count ; $i++ ) {
+                    if ($artistImages['name'][$i] != '') {
+                        $name = $artistImages['name'][$i];
+                        $type = substr($artistImages['type'][$i], strpos($artistImages['type'][$i], "/") + 1);    
+                        $data = file_get_contents($artistImages['tmp_name'][$i]);
+                        $isLogo = 0;
+                        $imagesUpdated = $this->ImageService->createArtistImage($name, $artistID, $type, $isLogo, $data);
+                    }
+                }
+            }
+            if ($updated && $logoUpdated && $imagesUpdated) {
+                echo '<script type="text/javascript">
+               window.location = "/admin/artists"
+               </script>'; 
+           } else {
+               echo '<script>alert("Something went wrong, artist not updated.")</script>';
+           }
+        
+         }
+   
+        $body = __DIR__ . "/../View/Admin/Festival-Dance/editartist.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');    
     }
 }

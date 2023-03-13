@@ -157,9 +157,9 @@ class Artist implements JsonSerializable {
      /**
      * Get the value of Logo
      *
-     * @return Image
+     * @return ?Image
      */
-    public function getLogo(): Image
+    public function getLogo(): ?Image
     {
         return $this->Logo;
     }
@@ -167,11 +167,11 @@ class Artist implements JsonSerializable {
     /**
      * Set the value of Logo
      *
-     * @param Image $Logo
+     * @param ?Image $Logo
      *
      * @return self
      */
-    public function setLogo(Image $Logo): self
+    public function setLogo(?Image $Logo): self
     {
         $this->Logo = $Logo;
 
@@ -181,9 +181,9 @@ class Artist implements JsonSerializable {
      /**
      * Get the value of Images
      *
-     * @return Array
+     * @return ?Array
      */
-    public function getImages(): Array
+    public function getImages(): ?Array
     {
         return $this->Images;
     }
@@ -191,11 +191,11 @@ class Artist implements JsonSerializable {
     /**
      * Set the value of Images
      *
-     * @param Array $Images
+     * @param ?Array $Images
      *
      * @return self
      */
-    public function setImages(Array $Images): self
+    public function setImages(?Array $Images): self
     {
         $this->Images = $Images;
 
