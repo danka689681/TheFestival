@@ -80,6 +80,15 @@
   .BlueText {
     color: #2CA8FF;
   }
+
+.imagePreview {
+  display: inline-grid;
+  grid-auto-flow: column;
+  margin-bottom: 5%;
+}
+.imageTooltips {
+  position: absolute;
+}
 @media only screen and (min-width: 1024px) {
     .form-container {
         left: 60%;

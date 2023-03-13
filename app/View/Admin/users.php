@@ -1,8 +1,6 @@
 
 <div class="main-panel" id="main-panel">
    <h1 class="centered-text">Manage Users</h1>
-   <div class="panel-header panel-header-sm panel-header-colored">
-   </div>
    <div class="content">
       <div class="row">
          <div class="col-md-12">
@@ -92,7 +90,7 @@
                                  <button type="button" rel="tooltip"  class="btn btn-info btn-sm btn-icon"  onclick="openUserForm('<?= $user->getID()?>','<?= $user->getRole() ?>')">
                                  <i class="fa-light fa-pen-to-square"></i>
                                  </button>
-                                 <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon"  onclick="openDeleteUserForm('<?= $user->getID()?>')">
+                                 <button type="button" rel="tooltip" class="btn btn-danger btn-sm btn-icon"  onclick="openDeleteForm('bkg-deleteUser-<?= $user->getID()?>')">
                                  <i class="fa-light fa-xmark-large"></i>
                                  </button>
                                  <div class="blur-bkg" id="bkg-<?= $user->getID()?>">
@@ -133,7 +131,7 @@
                                        <h2 class="centered-text">Are you sure you want to delete user <?= $user->getName()?>?</h2>
                                        <input type="text" class="form-control" name="userID"  id="disabledInput"  value=<?= $user->getID()?> readonly> 
                                        <input type="submit" name="deleteUser" class="btn btn-info" value="Yes" />
-                                       <button  type="button" class="btn btn-danger" onclick="closeDeleteUserForm(<?= $user->getID()?>)">No</button>
+                                       <button  type="button" class="btn btn-danger" onclick="closeDeleteForm('bkg-deleteUser-<?= $user->getID()?>')">No</button>
                                     </form>
                                  </div>
                                 </div>
@@ -155,7 +153,7 @@
 <script>    
    var css = document.createElement('link');
    css.rel = 'stylesheet';
-   css.href = '../assets/css/admin_users.css';
+   css.href = '../assets/css/admin_listview.css';
    document.head.appendChild(css);
 </script>
 <script>    
@@ -209,10 +207,5 @@
         document.getElementById(`bkg-${id}`).style.display = "none";
         document.getElementById(`userForm-${id}`).reset();
       }
-      function openDeleteUserForm(id) {  
-         document.getElementById(`bkg-deleteUser-${id}`).style.display = "block";
-      }
-      function closeDeleteUserForm(id) {
-        document.getElementById(`bkg-deleteUser-${id}`).style.display = "none";
-      }
 </script>   
+<script type="text/javascript" src="../assets/js/adminFormInteraction.js"></script>    

@@ -110,6 +110,47 @@ function protectedRoute($route){
     }
 } 
 
+    function createArtistObject($stmt) {
+        $artists = [];
 
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $Image = new Image();
+            $Image->setID($row["ForeignKeyID"]);
+            $Image->setName($row["ImageName"]);
+            $Image->setType($row["Type"]);
+            $Image->setIsLogo($row["IsLogo"]);
+            $Image->setData($row["Data"]);
+            $artists[$row["ID"]]["ID"] = $row["ID"];
+            $artists[$row["ID"]]["Name"] = $row["Name"];
+            $artists[$row["ID"]]["Description"] = $row["Description"];
+            $artists[$row["ID"]]["YouTube"] = $row["YouTube"];
+            $artists[$row["ID"]]["Spotify"] = $row["Spotify"];
+            $artists[$row["ID"]]["DemoSong"] = $row["DemoSong"];
+            if ($row["IsLogo"] == 1) {
+                $artists[$row["ID"]]["Logo"] = $Image;
+            } else {
+                $artists[$row["ID"]]["Images"][] = $Image;
+            }
+        }
+        $artistsObj = [];
+        foreach ($artists as $artist) {
+            $Artist = new Artist();
+            $Artist->setId($artist["ID"]);
+            $Artist->setName($artist["Name"]);
+            $Artist->setDescription($artist["Description"]);
+            $Artist->setYouTube($artist["YouTube"]);
+            $Artist->setSpotify($artist["Spotify"]);
+            $Artist->setDemoSong($artist["DemoSong"]);
+            if (array_key_exists("Logo", $artist)) {
+                $Artist->setLogo($artist["Logo"]);
+            }
+            if (array_key_exists("Images", $artist)) {
+                $Artist->setImages($artist["Images"]);
+            }
+            $artistsObj[] = $Artist;
+        }
+        return $artistsObj;
+ 
+    }
 
 ?>

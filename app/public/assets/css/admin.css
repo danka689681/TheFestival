@@ -24,6 +24,142 @@
 }
 
 
+.sorting-icons {
+    display: inline-grid;
+  }
+  
+  .searchIput{
+      width: 30%;
+  }
+  .searchForm {
+      display: flex;
+  }
+  
+  #searchUsersBtn {
+      width: 10%;
+      padding: 0;
+      margin: 0;
+      margin-left: -10%;
+  }
+  .btnHidden {
+      display: none;
+  }
+  .btnVisible {
+      display: initial;
+  }
+  
+  .form-popup {
+      position: fixed;
+      bottom: 0;
+      right: 15px;
+      border: 3px solid #f1f1f1;
+      z-index: 9;
+    }
+    .content {
+        margin-top: 5% !important;
+    }
+    .imageContainer {
+        position: relative;
+        display: inline-block;
+    }
+    .imageContainer img {
+        width: 200px;
+    }
+    .imageContainer .editImageBtn {
+        position: absolute;
+        left: 0;
+        top: 0;
+        margin: 0;
+    }
+
+    /* Button used to open the contact form - fixed at the bottom of the page */
+  .open-button {
+      background-color: #555;
+      color: white;
+      padding: 16px 20px;
+      border: none;
+      cursor: pointer;
+      opacity: 0.8;
+      position: fixed;
+      bottom: 23px;
+      right: 28px;
+      width: 280px;
+    }
+    .form-container {
+      padding: 10px;
+      background-color: white;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 40%;
+      box-shadow: 0px 2px 18px 1px #888888;
+      border-radius: 8px;
+      padding: 3%;
+    }
+    .form-container .form-row {
+      text-align: left;
+    }
+    .blur-bkg .form-group.col-md-6 {
+      margin: auto;
+    }
+  
+    .blur-bkg .form-control {
+      width: auto;
+    }
+    .blur-bkg {
+      width: 100vw;
+      height: 100vh;
+      background: #0005;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 3;
+      display: none;
+    }
+  
+    .BlueText {
+      color: #2CA8FF;
+    }
+  
+    .navSeparator {
+        border-top: 1px solid white;
+        width: calc(100% - 30px);   
+        margin-top: 0;
+    }
+    .navHeading {
+        color: white;
+        text-align: center;
+        text-transform: uppercase;
+        margin-top: 2em !important;
+    }
+  
+    /* Styling select file input */
+    .selectFile {
+        text-align:center;
+        padding:3%;
+        border:thin solid black;
+      }
+
+      .selectFile #inputTag,
+      .selectFile #inputTag-Logo{
+        display: none;
+      }
+      .selectFile label{
+        cursor:pointer;
+      }
+      #imageName, #logoName {
+        color:green;
+      }
+  @media only screen and (min-width: 1024px) {
+      .form-container {
+          left: 60%;
+      }
+      .form-container div {
+          display: block;
+          width: 90%;
+      }
+  }
     
 @media (min-width: 992px) {
 
