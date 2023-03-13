@@ -153,4 +153,13 @@ function protectedRoute($route){
  
     }
 
+function searchListByName($searchInput, $Array) {
+       foreach ($Array as $Item) {
+         if (!str_contains(strtolower($Item->getName()), strtolower($searchInput))) {
+                 unset($Array[array_search($Item, $Array)]);                
+         }
+       }
+       return $Array;
+}
+
 ?>

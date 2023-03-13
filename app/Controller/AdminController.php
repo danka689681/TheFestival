@@ -5,6 +5,7 @@ require __DIR__ . '/../generalFunctions.php';
 require __DIR__ . '/../mailTemplates.php';
 require __DIR__ . '/../DAL/UserService.php';
 require __DIR__ . '/../Model/User.php';
+require __DIR__ . '/../Model/Venue.php';
 require __DIR__ . '/../DAL/TokenService.php';
 require __DIR__ . '/../Model/Token.php';
 require __DIR__ . '/../Enum/Role.php';
@@ -12,6 +13,7 @@ require __DIR__ . '/../Enum/Password.php';
 require __DIR__ . '/../Model/Artist.php';
 require __DIR__ . '/../DAL/ArtistService.php';
 require __DIR__ . '/../DAL/ImageService.php';
+require __DIR__ . '/../DAL/VenueService.php';
 class AdminController extends Controller {
     public $header;
     public $footer;
@@ -19,6 +21,7 @@ class AdminController extends Controller {
     private $TokenService;
     private $ArtistService;
     private $ImageService;
+    private $VenueService;
 
     function __construct() {
         $this->header =  __DIR__ . "/../View/Admin/adminHeader.php"; 
@@ -27,7 +30,7 @@ class AdminController extends Controller {
         $this->TokenService = new TokenService();
         $this->ArtistService = new ArtistService();
         $this->ImageService = new ImageService();
-
+        $this->VenueService = new VenueService();
     }
  
     public function index() {
@@ -43,8 +46,6 @@ class AdminController extends Controller {
        $group = "";
        $setSort = "";
        $setSortType = "";
-       $descArrowClass = "fa-thin fa-sort-down btnHidden";
-       $ascArrowClass = "fa-duotone fa-sort btnVisible";
        $searchInput = "";
        if(isset($_POST['searchUsers'])) {
         $searchInput = trim($_POST["searchUsers"]);
@@ -194,12 +195,8 @@ class AdminController extends Controller {
             $sortType = SORT_ASC;
             if ($_GET['dir'] == 'asc') {
                 $sortType = SORT_ASC;
-                $descArrowClass = 'fa-solid fa-sort-up btnVisible';
-                $ascArrowClass = 'btnHidden';
             } else {
                 $sortType = SORT_DESC;
-                $descArrowClass = "btnHidden";
-                $ascArrowClass = 'fa-solid fa-sort-down btnVisible';
             }
             array_multisort($sort, $sortType, $displayUsers);
             
@@ -221,6 +218,12 @@ class AdminController extends Controller {
     public function artists() {
         $color = "blue";
         $displayArtists = $this->ArtistService->getAllArtists();
+        $searchInput = "";
+        if(isset($_POST['searchArtists'])) {
+         $searchInput = trim($_POST["searchArtists"]);
+         $displayArtists = searchListByName($searchInput, $displayArtists);       
+         }
+        
         if(isset($_POST['deleteArtist'])) {
             $ID = trim($_POST["artistID"]);
             $deleted = $this->ArtistService->deleteArtistByID($ID);
@@ -312,6 +315,69 @@ class AdminController extends Controller {
          }
    
         $body = __DIR__ . "/../View/Admin/Festival-Dance/editartist.php";
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');    
+    }
+
+    public function venues() {
+        $color = "blue";
+        $body = __DIR__ . "/../View/Admin/Festival-Dance/venues.php";
+        $displayVenues = $this->VenueService->getAllVenues();
+        $searchInput = "";
+        if(isset($_POST['searchVenues'])) {
+         $searchInput = trim($_POST["searchVenues"]);
+         $displayVenues = searchListByName($searchInput, $displayVenues);       
+         }
+        if(isset($_POST['deleteVenue'])) {
+            $ID = trim($_POST["venueID"]);
+            $deleted = $this->VenueService->deleteVenueByID($ID);
+            if ($deleted) {
+                echo '<script type="text/javascript">
+                window.location = "/admin/venues"
+                </script>';
+              
+            } else {
+                echo '<script>alert("Something went wrong, venue not updated.")</script>';
+
+            }
+        }
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');    
+    }
+    public function editVenue() {
+        $color = "blue";
+        $venue = "";
+        if(isset($_GET['id'])) {
+            $venueID = $_GET['id'];
+            if ($venueID) {
+                $venue = $this->VenueService->getVenueByID($venueID);
+            } 
+        }
+
+        if(isset($_POST['updateVenue'])) {
+            if (isset($_POST['venueID'])) {
+                $venueID = trim($_POST['venueID']);
+            }
+            $venueName = trim($_POST['venueName']);
+            $venueMapURL = trim($_POST['venueMapURL']);
+
+            if ($venueID) {
+                $updated = $this->VenueService->updateVenueByID($venueID, $venueName, $venueMapURL);
+            } else {
+                $venueID = $this->VenueService->createVenue($venueName, $venueMapURL);
+                $updated = $venueID == false ? false : true;
+            }
+        
+           
+            if ($updated) {
+                echo '<script type="text/javascript">
+               window.location = "/admin/venues"
+               </script>'; 
+           } else {
+               echo '<script>alert("Something went wrong, venue not updated.")</script>';
+           }
+        
+         }
+   
+        $body = __DIR__ . "/../View/Admin/Festival-Dance/editvenue.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');    
     }
 }
