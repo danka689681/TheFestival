@@ -1,179 +1,191 @@
 body {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+}
+.location-heading{
+  font-size: 40px;
+  font-weight: bold;
 }
 .main-content {
-    margin: 100px 100px;
+  margin: 100px 100px;
 }
 .background{
-    background-color: #F2DAA2;
+  background-color: #F2DAA2;
 }
 .centered {
-    position: absolute;
-    top: 10%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .mainheading{
-    color : white;
-    font-family: Caudex;
-    margin-top: -18%;
-    font-size: 100px;
-    font-weight: bold;
-    text-shadow: 2px 2px 4px #000000;
+  color : white;
+  font-family: Caudex;
+  margin-top: -18%;
+  font-size: 100px;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px #000000;
 
 }
 .backgroundImg{
-    margin-top: -2%;
-    position: center;
+  margin-top: -2%;
+  position: center;
 }
 
 /* Style the list */
 .breadcrumb{
-    margin-top:200px
+  margin-top:200px
 }
 ul.breadcrumb {
-    padding: 10px 16px;
-    list-style: none;
-    background-color: #eee;
-  }
-  
-  /* Display list items side by side */
-  ul.breadcrumb li {
-    display: inline;
-    font-size: 18px;
-  }
-  
-  /* Add a slash symbol (/) before/behind each list item */
-  ul.breadcrumb li+li:before {
-    padding: 8px;
-    color: black;
-    content: ">\00a0";
-  }
-  
-  /* Add a color to all links inside the list */
-  ul.breadcrumb li a {
-    color: #0275d8;
-    text-decoration: none;
-  }
-  
-  /* Add a color on mouse-over */
-  ul.breadcrumb li a:hover {
-    color: #01447e;
-    text-decoration: underline;
-  }
-  .introPic{
-    width: 320px;
-    height: 200px;
-  }
-  .small{
-    width: 360px;
-    height: 200px;
-    margin-right: 50px;
-  }
-  .big{
-    width: 480px;
-    height: 420px;
-    margin-top: -210px
-  }
-  .introParagraph{
-    font-size: 20px;
-  }
-  h2{
-    font-size: 40px;
-    font-weight: bold;
-  }
-  .locationList{
-    background-color: #F2DAA2;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .box{
-    background-color: #F2DAA2;
-    margin: 10px;
-    padding: 20px;
-    font-size: 30px;
-    width: 48%;
-  }
-  .locationpic{
-    padding: 20px;
-  }
-  .locationInfoPara{
-    font-size: 20px;
-    margin-top: 40px;
-  }
-  .fa-solid .location{
-    color: #B50909;
-  }
-  .fa-location-dot{
-    color: #B50909;
-  }
-  .adress{
-    padding-left: 30px;
-    font-size: 20px;
-  }
-  .btnReadmore{
-    color: white;
-    margin-top: 25px;
-    padding: 3px 77px;
-    gap: 10px;
-    width: 260px;
-    height: 40px;
-    background: #B50909;
-    border-radius: 18px;
-    border-color: #B50909;
-    font-size: 20px;
-    font-weight: bold;
-  }
-  .btnReadmore:hover{
-    background: #F68F8F;
-  }
-  .routeHeading{
-    text-align: center;
-    margin-top: 60px;
-  }
-  .routePic{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%;
-  }
+  padding: 10px 16px;
+  list-style: none;
+  background-color: #eee;
+}
 
-  .flex-container-schedule{
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .schedule-element{
-    background-color: #F2DAA2;
-    width: 20%;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-left: 30px;
-    margin-right: 30px;
-    text-align: center;
-    line-height: 75px;
-  }
-  .schedule-head{
-    box-sizing: border-box;
+/* Display list items side by side */
+ul.breadcrumb li {
+  display: inline;
+  font-size: 18px;
+}
 
-    height: 120.02px;
-    left: 0px;
-    top: 0px;
+/* Add a slash symbol (/) before/behind each list item */
+ul.breadcrumb li+li:before {
+  padding: 8px;
+  color: black;
+  content: ">\00a0";
+}
 
-    background: #101010;
-    border-width: 2.85754px 2.85754px 0px 2.85754px;
-    border-style: solid;
-    border-color: #101010;
-    border-radius: 14.2877px 14.2877px 0px 0px;
-  }
-  h3{
-    margin-top: 20px;
-    color: white;
-    font-size: 50px;
-  }
-  .date{
-    color: white;
-    margin-top: -35px;
-    font-size: 25px;
-    font-weight: lighter;
-  }
+/* Add a color to all links inside the list */
+ul.breadcrumb li a {
+  color: #0275d8;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+.introPic{
+  width: 320px;
+  height: 200px;
+}
+.small{
+  width: 360px;
+  height: 200px;
+  margin-right: 50px;
+}
+.big{
+  width: 480px;
+  height: 420px;
+  margin-top: -210px
+}
+.introParagraph{
+  font-size: 20px;
+}
+h2{
+  font-size: 40px;
+  font-weight: bold;
+}
+.locationList{
+  background-color: #F2DAA2;
+  display: flex;
+  flex-wrap: wrap;
+}
+.box{
+  background-color: #F2DAA2;
+  margin: 10px;
+  margin-top: 20px;
+  padding: 20px;
+  font-size: 30px;
+  width: 48%;
+}
+.locationpic{
+  padding: 20px;
+}
+.locationInfoPara{
+  font-size: 20px;
+  margin-top: 40px;
+}
+.fa-solid .location{
+  color: #B50909;
+}
+.fa-location-dot{
+  color: #B50909;
+}
+.adress{
+  padding-left: 30px;
+  font-size: 20px;
+}
+.btnReadmore{
+  color: white;
+  margin-top: 25px;
+  padding: 3px 77px;
+  gap: 10px;
+  width: 260px;
+  height: 40px;
+  background: #B50909;
+  border-radius: 18px;
+  border-color: #B50909;
+  font-size: 20px;
+  font-weight: bold;
+}
+.btnReadmore:hover{
+  background: #F68F8F;
+}
+.routeHeading{
+  text-align: center;
+  margin-top: 60px;
+}
+.routePic{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+
+.flex-container-schedule{
+  display: flex;
+  flex-wrap: wrap;
+}
+.schedule-element{
+  background-color: #F2DAA2;
+  width: 20%;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-left: 30px;
+  margin-right: 30px;
+  text-align: center;
+  line-height: 75px;
+}
+.schedule-head{
+  box-sizing: border-box;
+
+  height: 120.02px;
+  left: 0px;
+  top: 0px;
+
+  background: #101010;
+  border-width: 2.85754px 2.85754px 0px 2.85754px;
+  border-style: solid;
+  border-color: #101010;
+  border-radius: 14.2877px 14.2877px 0px 0px;
+}
+h3{
+  margin-top: 20px;
+  color: white;
+  font-size: 50px;
+}
+.day{
+  font-size: 40px;
+}
+.date{
+  color: white;
+  margin-top: -55px;
+  font-size: 25px;
+  font-weight: lighter;
+}
+.box.location{
+  margin-top: 40px;
+
+}
