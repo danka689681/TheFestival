@@ -25,10 +25,11 @@ body {
 .transparent-card {
     text-align: center;
     color: white;
-    background-color: rgba(190, 190, 190, 0.3);
+    background-color: rgba(190, 190, 190, 0.2);
     box-shadow: 0 5px 10px rgba(128, 128, 128, 0.7);
     border-radius: 10px;
     position: relative;
+    backdrop-filter: blur(10px);
 }
 
 .transparent-card-p {
@@ -61,5 +62,29 @@ h1 {
 }
 
 .row{
-    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.column{
+    flex: 33.33%;
+    padding: 1%;
+    position: relative;
+}
+
+.column p{
+    font-size: 20pt;
+    width: 65%;
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-90%, -50%);
+}
+
+img{
+    border-radius: 10px;
+}
+
+.column .title:hover{
+    background-color: rgba(44, 43, 43, 0.237);
 }
