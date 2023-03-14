@@ -18,5 +18,20 @@ class HomeController extends Controller {
         $body = __DIR__ . "/../View/Home/index.php";
         eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
     }
+
+    public function history(){
+        $body = __DIR__ . "/../View/History/index.php";
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
+    }
+
+    public function yummy(){
+        $body = __DIR__ . "/../View/Yummy/index.php";
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
+    }
+
+    public function dance(){
+        $body = __DIR__ . "/../View/Dance/index.php";
+        eval(' ?>'. generateContent($this->header, $body, $this->footer) .'<?php ');
+    }
 }
 ?>

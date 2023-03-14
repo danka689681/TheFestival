@@ -12,28 +12,32 @@
    </div>
    <div class="sidebar-wrapper" id="sidebar-wrapper">
       <ul class="nav">
-         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin' ? 'active' : '');?>">
+         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin' || $_SERVER['REQUEST_URI'] == '/admin/' ? 'active' : '');?>">
             <a href="/admin">
                <i class="fa-solid fa-house"></i>              
                <p>Dashboard</p>
             </a>
          </li>
-         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/users' ? 'active' : '');?>">
+         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/users' || $_SERVER['REQUEST_URI'] == '/admin/users/' ? 'active' : '');?>">
             <a href="/admin/users">
                <i class="fa-solid fa-user"></i>              
                <p>Users</p>
             </a>
          </li>
-         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/visitHaarlem' ? 'active' : '');?>">
+         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/visitHaarlem' || $_SERVER['REQUEST_URI'] == '/admin/visitHaarlem/' ? 'active' : '');?>">
             <a href="/admin/visitHaarlem">
                <i class="fa-solid fa-signs-post"></i>             
                <p>Visit Haarlem</p>
             </a>
          </li>
-         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/festival' ? 'active' : '');?>">
-            <a href="/admin/festival">
+         <li>
+            <p class="navHeading">Festival</p>
+            <hr class="navSeparator">
+         </li>
+         <li class="<?php echo ($_SERVER['REQUEST_URI'] == '/admin/dance' || $_SERVER['REQUEST_URI'] == '/admin/dance/'  ? 'active' : '');?>">
+            <a href="/admin/dance">
                <i class="fa-solid fa-icons fa-fw fa-2x"></i>
-               <p>Festival</p>
+               <p>Dance</p>
             </a>
          </li>
          <li class="nav-bottom">
