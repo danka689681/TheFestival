@@ -32,4 +32,15 @@ class ImageDAO extends Database {
            return false;
        }
    }
+   function getHistoryImageByName($name){
+        try { 
+            $stmt = $this->connection->prepare("SELECT ID, Name, Type, IsLogo, Data FROM historyimages WHERE Name = ?");
+            $stmt->execute([$name]);
+            $stmt->setFetchMode(PDO::FETCH_CLASS, 'Image');
+            $image = $stmt->fetch();
+            return $image;
+        } catch (PDOException $e) {
+            echo $e;
+        }
+   }
 }

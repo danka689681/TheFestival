@@ -13,5 +13,10 @@ class ImageService {
         $created = $dao->createArtistImage($Name, $ArtistID, $Type, $IsLogo, $Data);
         return $created;
     }
+    function getHistoryImageByName($name){
+        $dao = new ImageDAO();
+        $image = $dao->getHistoryImageByName($name);
+        return $image;
+    }
 
 }
